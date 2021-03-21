@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Backend\Auth;
 
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 
-class AdminRegisterController extends Controller
+class RegisterController extends Controller
 {
     public function create()
     {
@@ -21,6 +21,11 @@ class AdminRegisterController extends Controller
             'lastname' => 'required|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|max:50',
+        ], [
+            'firstname.required' => 'Không được để trống',
+            'lastname.required' => 'Không được để trống',
+            'email.required' => 'Không được để trống',
+            'email.email' => 'Email không đúng định dạng'
         ]);
 
         $user = new User();

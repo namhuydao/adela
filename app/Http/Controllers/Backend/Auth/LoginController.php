@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Backend\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminLoginController extends Controller
+class LoginController extends Controller
 {
     public function create()
     {
@@ -16,13 +16,17 @@ class AdminLoginController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ],
+        [
+            'email.required' => 'Không được để trống',
+            'email.email' => 'Email không đúng định dạng'
         ]);
         $credential = $request->only('email', 'password');
 
         $remember = $request->has('remember');
 
         if(auth()->attempt($credential, $remember)){
-            return redirect('dashboard');
+            return redirect()->route('dashboard');
         }
         else{
             return redirect()->back()->with('message', 'Đăng nhập thất bại');

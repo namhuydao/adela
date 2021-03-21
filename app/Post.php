@@ -6,9 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $table = 'products';
+    protected $table = 'posts';
+
     public function category()
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->belongsTo(PostCategory::class);
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 }

@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
-                                            <input value="remember" class="custom-control-input"
+                                            <input name="remember" value="remember" class="custom-control-input"
                                                    id="rememberPasswordCheck" type="checkbox"/>
                                             <label class="custom-control-label" for="rememberPasswordCheck">Lưu
                                                 mật khẩu</label>
