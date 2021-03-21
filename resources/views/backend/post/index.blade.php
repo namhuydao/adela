@@ -40,7 +40,7 @@
                                                     alt="" width="100" height="100"></td>
                                             <td>{{$post->title}}</td>
                                             <td>{{$post->description}}</td>
-                                            <td>{{$post->author}}</td>
+                                            <td>{{$post->user->firstname . ' ' . $post->user->lastname}}</td>
                                             <td>{{$post->category->name}}</td>
                                             <td>
                                                 @foreach($post->tags as $tag)

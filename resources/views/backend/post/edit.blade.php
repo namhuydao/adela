@@ -54,16 +54,6 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="newsAuthorUpdate">Tác giả:</label>
-                                <input value="{{$post->author}}" type="text" name="author"
-                                       class="form-control" id="newsAuthorUpdate">
-                                @error('author')
-                                <span style="display: block" class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
                                 <label for="newsCategoryUpdate">Danh mục:</label>
                                 <select name="category" id="newsCategoryUpdate" class="form-control">
                                     {!! $html !!}

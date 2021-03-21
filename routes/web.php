@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin/register', 'Backend\Auth\RegisterController@create')->name('register')->middleware('guest');
 Route::post('/admin/register', 'Backend\Auth\RegisterController@store');
 
+Route::get('/admin/resend', 'Backend\Auth\VerificationController@create')->name('resend')->middleware('guest');
+Route::post('/admin/resend', 'Backend\Auth\VerificationController@resend');
+
+Route::get('/admin/verifyEmail/{token}', 'Backend\Auth\VerificationController@verifyEmail')->name('verify')->middleware('guest');
+
 Route::get('/admin/login', 'Backend\Auth\LoginController@create')->name('login')->middleware('guest');
 Route::post('/admin/login', 'Backend\Auth\LoginController@store');
 Route::post('/admin/logout', 'Backend\Auth\LoginController@destroy')->name('logout');
@@ -82,3 +87,4 @@ Route::resource('/admin/product','Backend\Product\ProductController',
             'destroy' => 'product.destroy',
         ]
     ])->middleware('auth');
+

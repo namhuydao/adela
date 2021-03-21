@@ -27,6 +27,9 @@
                                     @if(session('message'))
                                         <div class="alert alert-danger">{{session('message')}}</div>
                                     @endif
+                                    @if(session('sucess'))
+                                        <div class="alert alert-danger">{{session('sucess')}}</div>
+                                    @endif
                                     <div class="form-group">
                                         <label class="small mb-1" for="inputEmailAddress">Email</label>
                                         <input name="email" value="{{ old('email') }}"

@@ -24,19 +24,29 @@
                             <div class="form-group">
                                 <label for="productNameAdd">Tên:</label>
                                 <input type="text" name="name" class="form-control" id="productNameAdd">
+                                @error('name')
+                                <span style="display: block" class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="productDescAdd">Mô tả:</label>
                                 <input type="text" name="desc" class="form-control" id="productDescAdd">
-                            </div>
-                            <div class="form-group">
-                                <label for="productContentAdd">Nội dung:</label>
-                                <textarea type="text" name="content" class="form-control"
-                                          id="productContentAdd"></textarea>
+                                @error('desc')
+                                <span style="display: block" class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="productBasePriceAdd">Giá gốc:</label>
                                 <input type="number" name="basePrice" class="form-control" id="productBasePriceAdd">
+                                @error('basePrice')
+                                <span style="display: block" class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="productDiscountPriceAdd">Giá ưu đãi:</label>

@@ -44,13 +44,11 @@ class PostController extends Controller
             'title' => 'required',
             'desc' => 'required',
             'content' => 'required',
-            'author' => 'required',
         ],
             [
                 'title.required' => 'Không được để trống',
                 'desc.required' => 'Không được để trống',
                 'content.required' => 'Không được để trống',
-                'author.required' => 'Không được để trống',
             ]);
 
 
@@ -59,7 +57,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->description = $request->desc;
         $post->content = $request->input('content');
-        $post->author = $request->author;
+        $post->author_id = auth()->user()->id;
         $post->category_id = $request->category;
         $post->save();
 
@@ -110,13 +108,11 @@ class PostController extends Controller
             'title' => 'required',
             'desc' => 'required',
             'content' => 'required',
-            'author' => 'required',
         ],
             [
                 'title.required' => 'Không được để trống',
                 'desc.required' => 'Không được để trống',
                 'content.required' => 'Không được để trống',
-                'author.required' => 'Không được để trống',
             ]);
 
 
@@ -124,7 +120,6 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->description = $request->desc;
         $post->content = $request->input('content');
-        $post->author = $request->author;
         $post->category_id = $request->category;
         $post->save();
 

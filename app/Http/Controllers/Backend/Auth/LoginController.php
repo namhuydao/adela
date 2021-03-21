@@ -9,6 +9,8 @@ class LoginController extends Controller
 {
     public function create()
     {
+        session()->forget('email_resend');
+        session()->forget('resent');
         return view('backend.auth.login');
     }
     public function store(Request $request)
@@ -26,6 +28,11 @@ class LoginController extends Controller
         $remember = $request->has('remember');
 
         if(auth()->attempt($credential, $remember)){
+
+            if (auth()->user()->email_verified_at === null){
+                auth()->logout();
+                return redirect()->back()->with('message', 'Vui lòng kích hoạt tài khoản trước khi tiếp tục');
+            }
             return redirect()->route('dashboard');
         }
         else{

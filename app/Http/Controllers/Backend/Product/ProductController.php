@@ -41,35 +41,34 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'name' => 'required',
             'desc' => 'required',
-            'content' => 'required',
-            'author' => 'required',
+            'basePrice' => 'required'
         ],
             [
-                'title.required' => 'Không được để trống',
+                'name.required' => 'Không được để trống',
                 'desc.required' => 'Không được để trống',
-                'content.required' => 'Không được để trống',
-                'author.required' => 'Không được để trống',
+                'basePrice.required' => 'Không được để trống',
             ]);
 
 
         $product = new Product();
 
-        $post->title = $request->title;
-        $post->description = $request->desc;
-        $post->content = $request->input('content');
-        $post->author = $request->author;
-        $post->category_id = $request->category;
-        $post->save();
+        $product->name = $request->name;
+        $product->description = $request->desc;
+        $product->seller_id = auth()->user()->id;
+        $product->base_price = $request->basePrice;
+        $product->discount_price = $request->discountPrice;
+        $product->category_id = $request->category;
+        $product->save();
 
         $tags = [];
         foreach ($request->tags as $tag){
             $tags[] = Tag::find($tag);
         }
-        $post->tags()->saveMany($tags);
+        $product->tags()->saveMany($tags);
 
-        return redirect()->route('post');
+        return redirect()->route('product');
     }
 
     /**
@@ -92,7 +91,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $html = getPostCategory($product->category_id);
+        $tags = Tag::all();
+        $html = getProductCategory($product->category_id);
+        return view('backend.product.edit', compact('html', 'product', 'tags'));
+
     }
 
     /**
@@ -104,7 +106,31 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'desc' => 'required',
+            'basePrice' => 'required'
+        ],
+            [
+                'name.required' => 'Không được để trống',
+                'desc.required' => 'Không được để trống',
+                'basePrice.required' => 'Không được để trống',
+            ]);
+
+
+        $product = Product::find($id);
+
+        $product->name = $request->name;
+        $product->description = $request->desc;
+        $product->seller_id = auth()->user()->id;
+        $product->base_price = $request->basePrice;
+        $product->discount_price = $request->discountPrice;
+        $product->category_id = $request->category;
+        $product->save();
+
+        $product->tags()->sync($request->tags);
+
+        return redirect()->route('product');
     }
 
     /**
@@ -115,6 +141,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::find($id)->tags()->detach();
+        Product::destroy($id);
+
+        return redirect()->route('product');
     }
 }

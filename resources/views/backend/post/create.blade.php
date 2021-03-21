@@ -50,15 +50,6 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="newsAuthorAdd">Tác giả:</label>
-                                <input type="text" name="author" class="form-control" id="newsAuthorAdd">
-                                @error('author')
-                                <span style="display: block" class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
                                 <label for="newsCategoryAdd">Danh mục:</label>
                                 <select name="category" id="newsCategoryAdd" class="form-control">
                                     {!! $html !!}
