@@ -47,7 +47,7 @@ class RegisterController extends Controller
         $verified_user->save();
 
         Mail::to($user->email)->send(new verifyEmail($user));
-        session()->put('user_resend', $user->email);
+        session()->put('email_resend', $user->email);
         return redirect()->route('resend');
     }
 }
