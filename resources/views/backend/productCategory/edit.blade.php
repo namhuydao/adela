@@ -18,7 +18,7 @@
                         @method('put')
                         <div class="form-group">
                             <label for="productCategoryNameUpdate">Tên:</label>
-                            <input value="{{$category->name}}" type="text" name="name" class="form-control" id="productCategoryNameUpdate">
+                            <input value="{{$category->name}}" type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="productCategoryNameUpdate">
                             @error('name')
                             <span style="display: block" class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

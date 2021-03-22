@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -38,5 +37,9 @@ class User extends Authenticatable
 
     public function verifyUser(){
         return $this->hasOne(VerifyUser::class);
+    }
+
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id');
     }
 }

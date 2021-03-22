@@ -19,7 +19,7 @@ Route::post('/admin/logout', 'Backend\Auth\LoginController@destroy')->name('logo
 Route::get('/admin/dashboard', 'Backend\DashboardController@index')->name('dashboard')->middleware('auth');
 
 //PostCategory
-Route::resource('/admin/postCategory','Backend\Post\PostCategoryController',
+Route::resource('/admin/post/category','Backend\Post\PostCategoryController',
     [
         'names' => [
             'index' => 'postCategory',
@@ -33,7 +33,7 @@ Route::resource('/admin/postCategory','Backend\Post\PostCategoryController',
     ])->middleware('auth');
 
 //ProductCategory
-Route::resource('/admin/productCategory','Backend\Product\ProductCategoryController',
+Route::resource('/admin/product/category','Backend\Product\ProductCategoryController',
     [
         'names' => [
             'index' => 'productCategory',
@@ -88,3 +88,30 @@ Route::resource('/admin/product','Backend\Product\ProductController',
         ]
     ])->middleware('auth');
 
+//User
+Route::resource('/admin/user','Backend\User\UserController',
+    [
+        'names' => [
+            'index' => 'user',
+            'create' => 'user.create',
+            'store' => 'user.store',
+            'show' => 'user.show',
+            'edit' => 'user.edit',
+            'update' => 'user.update',
+            'destroy' => 'user.destroy',
+        ]
+    ])->middleware('auth');
+
+//Role
+Route::resource('/admin/role','Backend\Role\RoleController',
+    [
+        'names' => [
+            'index' => 'role',
+            'create' => 'role.create',
+            'store' => 'role.store',
+            'show' => 'role.show',
+            'edit' => 'role.edit',
+            'update' => 'role.update',
+            'destroy' => 'role.destroy',
+        ]
+    ])->middleware('auth');

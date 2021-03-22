@@ -1,6 +1,9 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -11,6 +14,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 10)->create();
+        $admin = new User();
+        $admin->firstName = 'admin';
+        $admin->lastName = 'admin';
+        $admin->email = 'admin@admin.com';
+        $admin->email_verified_at = now();
+        $admin->password = Hash::make('admin');
+        $admin->remember_token = Str::random(10);
+        $admin->save();
     }
 }

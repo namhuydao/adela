@@ -23,7 +23,7 @@
                         {{--                            </div>--}}
                             <div class="form-group">
                                 <label for="productNameAdd">Tên:</label>
-                                <input type="text" name="name" class="form-control" id="productNameAdd">
+                                <input value="{{old('name')}}" type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="productNameAdd">
                                 @error('name')
                                 <span style="display: block" class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="productDescAdd">Mô tả:</label>
-                                <input type="text" name="desc" class="form-control" id="productDescAdd">
+                                <input value="{{old('desc')}}" type="text" name="desc" class="form-control @error('desc') is-invalid @enderror" id="productDescAdd">
                                 @error('desc')
                                 <span style="display: block" class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="productBasePriceAdd">Giá gốc:</label>
-                                <input type="number" name="basePrice" class="form-control" id="productBasePriceAdd">
+                                <input value="{{old('basePrice')}}" type="number" name="basePrice" class="form-control @error('basePrice') is-invalid @enderror" id="productBasePriceAdd">
                                 @error('basePrice')
                                 <span style="display: block" class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="productDiscountPriceAdd">Giá ưu đãi:</label>
-                                <input type="number" name="discountPrice" class="form-control" id="productDiscountPriceAdd">
+                                <input value="{{old('discountPrice')}}" type="number" name="discountPrice" class="form-control" id="productDiscountPriceAdd">
                             </div>
 {{--                            <label for="productThumbnailsAdd">Thumbnails:</label>--}}
 {{--                            <div class="form-group position-relative text-center">--}}

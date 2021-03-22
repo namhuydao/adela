@@ -62,11 +62,7 @@ class ProductController extends Controller
         $product->category_id = $request->category;
         $product->save();
 
-        $tags = [];
-        foreach ($request->tags as $tag){
-            $tags[] = Tag::find($tag);
-        }
-        $product->tags()->saveMany($tags);
+        $product->tags()->sync($request->tags);
 
         return redirect()->route('product');
     }

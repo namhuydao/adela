@@ -61,11 +61,7 @@ class PostController extends Controller
         $post->category_id = $request->category;
         $post->save();
 
-        $tags = [];
-        foreach ($request->tags as $tag){
-            $tags[] = Tag::find($tag);
-        }
-        $post->tags()->saveMany($tags);
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('post');
     }

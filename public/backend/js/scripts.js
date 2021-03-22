@@ -69,3 +69,7 @@ CKEDITOR.replace('content_editWidget');
 //         });
 //     });
 // });
+
+$(document).ready(function() {
+    $('.userRoleMultiple').select2();
+});

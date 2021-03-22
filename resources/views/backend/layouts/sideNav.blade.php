@@ -17,7 +17,7 @@
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                      data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="">Quản lý người dùng</a>
+                        <a class="nav-link" href="{{route('user')}}">Quản lý người dùng</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2"
@@ -68,24 +68,6 @@
                         <a class="nav-link" href="{{route('tag')}}">Quản lý Tag</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts4"
-                   aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Hiệu ứng và widget
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne"
-                     data-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/superFood/admin/animation">Quản lý hiệu ứng</a>
-                    </nav>
-                </div>
-                <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne"
-                     data-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/superFood/admin/widget">Quản lý widget</a>
-                    </nav>
-                </div>
                 <div class="sb-sidenav-menu-heading">Admin</div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts5"
                    aria-expanded="false" aria-controls="collapseLayouts">
@@ -96,7 +78,7 @@
                 <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne"
                      data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/superFood/admin/roles">Quản lý quyền</a>
+                        <a class="nav-link" href="{{route('role')}}">Quản lý quyền</a>
                     </nav>
                 </div>
             </div>

@@ -25,7 +25,7 @@
                         {{--                        </div>--}}
                         <div class="form-group">
                             <label for="productNameUpdate">Tên:</label>
-                            <input value="{{$product->name}}" type="text" name="name" class="form-control"
+                            <input value="{{$product->name}}" type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                                    id="productNameUpdate">
                             @error('name')
                             <span style="display: block" class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="productDescUpdate">Mô tả:</label>
                             <input value="{{$product->description}}" type="text" name="desc"
-                                   class="form-control" id="productDescUpdate">
+                                   class="form-control @error('desc') is-invalid @enderror" id="productDescUpdate">
                             @error('desc')
                             <span style="display: block" class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label for="productBasePriceUpdate">Giá gốc:</label>
                             <input value="{{$product->base_price}}" type="number" name="basePrice"
-                                   class="form-control" id="productBasePriceUpdate">
+                                   class="form-control @error('basePrice') is-invalid @enderror" id="productBasePriceUpdate">
                             @error('basePrice')
                             <span style="display: block" class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

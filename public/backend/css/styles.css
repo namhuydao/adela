@@ -11,6 +11,9 @@
 ::-webkit-scrollbar-thumb {
     background: #343a40;
 }
+.select2{
+    width: 100% !important;
+}
 
 .error {
     color: red;
