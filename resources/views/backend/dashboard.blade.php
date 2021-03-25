@@ -14,11 +14,11 @@
                         <div class="col-md-4">
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body"><p style="font-size: 30px; text-align: center">
-                                        <i style="padding-left: 10px" class="fas fa-user"></i>
+                                        {{\App\User::count()}}<i style="padding-left: 10px" class="fas fa-user"></i>
                                     </p>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="/superFood/admin/users">Xem thông tin chi
+                                    <a class="small text-white stretched-link" href="{{route('user')}}">Xem thông tin chi
                                         tiết</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
@@ -27,10 +27,10 @@
                         <div class="col-md-4">
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body"><p style="font-size: 30px; text-align: center">
-                                        <i style="padding-left: 10px" class="fad fa-newspaper"></i>
+                                        {{\App\Post::count()}}<i style="padding-left: 10px" class="fad fa-newspaper"></i>
                                     </p></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="/superFood/admin/news">Xem thông tin chi
+                                    <a class="small text-white stretched-link" href="{{route('post')}}">Xem thông tin chi
                                         tiết</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
@@ -39,10 +39,10 @@
                         <div class="col-md-4">
                             <div class="card bg-success text-white mb-4">
                                 <div class="card-body"><p style="font-size: 30px; text-align: center">
-                                        <i style="padding-left: 10px" class="fad fa-shopping-bag"></i>
+                                        {{\App\Product::count()}}<i style="padding-left: 10px" class="fad fa-shopping-bag"></i>
                                     </p></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="/superFood/admin/product">Xem thông tin chi
+                                    <a class="small text-white stretched-link" href="{{route('product')}}">Xem thông tin chi
                                         tiết</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
@@ -52,10 +52,57 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
-                            Bảng tin tức
+                            Bảng sản phẩm
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Avatar</th>
+                                        <th>Tên</th>
+                                        <th>Mô tả</th>
+                                        <th>Người bán</th>
+                                        <th>Giá gốc</th>
+                                        <th>Giá ưu đãi</th>
+                                        <th>Danh mục</th>
+                                        <th>Tags</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($products as $key => $product)
+                                        @if(auth()->user()->id == $product->user->id)
+                                            <tr>
+                                                <td class="text-center"><img
+                                                        src=""
+                                                        alt="" width="100" height="100"></td>
+                                                <td>{{$product->name}}</td>
+                                                <td>{{$product->description}}</td>
+                                                <td>{{$product->user->firstname . ' ' . $product->user->lastname}}</td>
+                                                <td>{{$product->base_price}}</td>
+                                                <td>{{$product->discount_price}}</td>
+                                                <td>{{$product->category->name}}</td>
+                                                <td>
+                                                    @foreach($product->tags as $tag)
+                                                        {{$tag->name}},
+                                                    @endforeach
+                                                </td>
+                                                <td class="d-flex">
+                                                    <a class="btn btn-primary mr-1"
+                                                       href="{{route('product.edit',$product->id)}}">Sửa</a>
+                                                    <form action="{{route('product.destroy',$product->id)}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="delete btn btn-danger">Xóa</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

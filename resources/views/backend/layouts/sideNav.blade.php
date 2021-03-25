@@ -78,7 +78,13 @@
                 <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne"
                      data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{route('role')}}">Quản lý quyền</a>
+                        <a class="nav-link" href="{{route('role')}}">Quản lý vai trò</a>
+                    </nav>
+                </div>
+                <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne"
+                     data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{route('permission')}}">Quản lý quyền</a>
                     </nav>
                 </div>
             </div>

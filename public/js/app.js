@@ -7061,7 +7061,7 @@ var i,
 
 	// Used for iframes
 	// See setDocument()
-	// Removing the function wrapper causes a "Permission Denied"
+	// Removing the function wrapper causes a "permission Denied"
 	// error in IE
 	unloadHandler = function() {
 		setDocument();
@@ -7482,7 +7482,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// Return early if doc is invalid or already selected
 	// Support: IE 11+, Edge 17 - 18+
-	// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+	// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 	// two documents; shallow comparisons work.
 	// eslint-disable-next-line eqeqeq
 	if ( doc == document || doc.nodeType !== 9 || !doc.documentElement ) {
@@ -7497,7 +7497,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// Support: IE 9 - 11+, Edge 12 - 18+
 	// Accessing iframe documents after unload throws "permission denied" errors (jQuery #13936)
 	// Support: IE 11+, Edge 17 - 18+
-	// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+	// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 	// two documents; shallow comparisons work.
 	// eslint-disable-next-line eqeqeq
 	if ( preferredDoc != document &&
@@ -7842,7 +7842,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 		// Calculate position if both inputs belong to the same document
 		// Support: IE 11+, Edge 17 - 18+
-		// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+		// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 		// two documents; shallow comparisons work.
 		// eslint-disable-next-line eqeqeq
 		compare = ( a.ownerDocument || a ) == ( b.ownerDocument || b ) ?
@@ -7857,7 +7857,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 			// Choose the first element that is related to our preferred document
 			// Support: IE 11+, Edge 17 - 18+
-			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+			// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 			// two documents; shallow comparisons work.
 			// eslint-disable-next-line eqeqeq
 			if ( a == document || a.ownerDocument == preferredDoc &&
@@ -7866,7 +7866,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 
 			// Support: IE 11+, Edge 17 - 18+
-			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+			// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 			// two documents; shallow comparisons work.
 			// eslint-disable-next-line eqeqeq
 			if ( b == document || b.ownerDocument == preferredDoc &&
@@ -7901,7 +7901,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		if ( !aup || !bup ) {
 
 			// Support: IE 11+, Edge 17 - 18+
-			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+			// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 			// two documents; shallow comparisons work.
 			/* eslint-disable eqeqeq */
 			return a == document ? -1 :
@@ -7940,7 +7940,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 			// Otherwise nodes in our document sort first
 			// Support: IE 11+, Edge 17 - 18+
-			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+			// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 			// two documents; shallow comparisons work.
 			/* eslint-disable eqeqeq */
 			ap[ i ] == preferredDoc ? -1 :
@@ -7987,7 +7987,7 @@ Sizzle.contains = function( context, elem ) {
 
 	// Set document vars if needed
 	// Support: IE 11+, Edge 17 - 18+
-	// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+	// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 	// two documents; shallow comparisons work.
 	// eslint-disable-next-line eqeqeq
 	if ( ( context.ownerDocument || context ) != document ) {
@@ -8000,7 +8000,7 @@ Sizzle.attr = function( elem, name ) {
 
 	// Set document vars if needed
 	// Support: IE 11+, Edge 17 - 18+
-	// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+	// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 	// two documents; shallow comparisons work.
 	// eslint-disable-next-line eqeqeq
 	if ( ( elem.ownerDocument || elem ) != document ) {
@@ -9039,7 +9039,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 			if ( outermost ) {
 
 				// Support: IE 11+, Edge 17 - 18+
-				// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+				// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 				// two documents; shallow comparisons work.
 				// eslint-disable-next-line eqeqeq
 				outermostContext = context == document || context || outermost;
@@ -9053,7 +9053,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 					j = 0;
 
 					// Support: IE 11+, Edge 17 - 18+
-					// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+					// IE/Edge sometimes throw a "permission denied" error when strict-comparing
 					// two documents; shallow comparisons work.
 					// eslint-disable-next-line eqeqeq
 					if ( !context && elem.ownerDocument != document ) {
@@ -16748,7 +16748,7 @@ jQuery.fn.load = function( url, params, callback ) {
 			self.html( selector ?
 
 				// If a selector was specified, locate the right elements in a dummy div
-				// Exclude scripts to avoid IE 'Permission Denied' errors
+				// Exclude scripts to avoid IE 'permission Denied' errors
 				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
 
 				// Otherwise use the full result
@@ -34462,7 +34462,7 @@ __webpack_require__.r(__webpack_exports__);
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell

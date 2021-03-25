@@ -18,11 +18,15 @@
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false"><img style="border-radius: 50%" src="
+               aria-haspopup="true" aria-expanded="false"><img style="border-radius: 50%" src="@if(auth()->user()->image)
+                {{asset('backend/assets/images').'/'.auth()->user()->image}}
+                @else
+                {{asset('backend/assets/images/user/default.png')}}
+                @endif
                     " alt="" width="30" height="30"></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 <a class="dropdown-item"
-                   href="">Thông tin cá
+                   href="{{route('profile', auth()->user())}}">Thông tin cá
                     nhân</a>
                 <div class="dropdown-divider"></div>
                 <form action="{{ route('logout') }}" method="post">

@@ -39,7 +39,12 @@
                                         @if(auth()->user()->id == $product->user->id)
                                             <tr>
                                                 <td class="text-center"><img
-                                                        src=""
+                                                        src="
+                                                        @if($product->avatar)
+                                                        {{asset('backend/assets/images').'/'.$product->avatar}}
+                                                        @else
+                                                        {{asset('backend/assets/images/product/default.png')}}
+                                                        @endif"
                                                         alt="" width="100" height="100"></td>
                                                 <td>{{$product->name}}</td>
                                                 <td>{{$product->description}}</td>

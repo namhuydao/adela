@@ -14,7 +14,7 @@ class RoleSeeder extends Seeder
     {
         $admin = new Role();
         $admin->code = 'superadmin';
-        $admin->name = 'superadmin';
+        $admin->name = 'super admin';
         $admin->save();
     }
 }

@@ -9,7 +9,7 @@ Route::post('/admin/register', 'Backend\Auth\RegisterController@store');
 Route::get('/admin/resend', 'Backend\Auth\VerificationController@create')->name('resend')->middleware('guest');
 Route::post('/admin/resend', 'Backend\Auth\VerificationController@resend');
 
-Route::get('/admin/verifyEmail/{token}', 'Backend\Auth\VerificationController@verifyEmail')->name('verify')->middleware('guest');
+Route::get('/admin/verifyEmail/{token}', 'Backend\Auth\VerificationController@verifyEmail')->name('verify');
 
 Route::get('/admin/login', 'Backend\Auth\LoginController@create')->name('login')->middleware('guest');
 Route::post('/admin/login', 'Backend\Auth\LoginController@store');
@@ -102,6 +102,13 @@ Route::resource('/admin/user','Backend\User\UserController',
         ]
     ])->middleware('auth');
 
+//UserProfile
+Route::get('/admin/user/profile/{user}', 'Backend\User\UserprofileController@edit')->name('profile')->middleware('auth');
+Route::post('/admin/user/profile/{user}', 'Backend\User\UserprofileController@update');
+
+Route::get('/admin/user/profile/editPass/{user}', 'Backend\User\UserprofileController@editPassword')->name('changePassword')->middleware('auth');
+Route::post('/admin/user/profile/editPass/{user}', 'Backend\User\UserprofileController@updatePassword');
+
 //Role
 Route::resource('/admin/role','Backend\Role\RoleController',
     [
@@ -115,3 +122,26 @@ Route::resource('/admin/role','Backend\Role\RoleController',
             'destroy' => 'role.destroy',
         ]
     ])->middleware('auth');
+
+//permission
+Route::resource('/admin/permission','Backend\Permission\PermissionController',
+    [
+        'names' => [
+            'index' => 'permission',
+            'create' => 'permission.create',
+            'store' => 'permission.store',
+            'show' => 'permission.show',
+            'edit' => 'permission.edit',
+            'update' => 'permission.update',
+            'destroy' => 'permission.destroy',
+        ]
+    ])->middleware('auth');
+
+//Forget Password
+Route::get('/admin/forgotPassword','Backend\Auth\Password\ForgotController@create')->name('forgot');
+Route::post('/admin/forgotPassword','Backend\Auth\Password\ForgotController@store');
+Route::post('/admin/resendPass','Backend\Auth\Password\ForgotController@resend')->name('passResend');
+
+Route::get('/admin/resetPassword','Backend\Auth\Password\ResetController@create')->name('reset');
+Route::post('/admin/resetPassword','Backend\Auth\Password\ResetController@store');
+

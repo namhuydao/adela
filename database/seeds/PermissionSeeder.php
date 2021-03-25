@@ -13,26 +13,26 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         $permission = new Permission();
-        $permission->code = 'Sản phẩm';
-        $permission->name = '';
+        $permission->code = '';
+        $permission->name = 'Sản phẩm';
         $permission->parent_id = '0';
         $permission->save();
 
         $permission = new Permission();
-        $permission->code = 'Tin tức';
-        $permission->name = '';
+        $permission->code = '';
+        $permission->name = 'Tin tức';
         $permission->parent_id = '0';
         $permission->save();
 
         $permission = new Permission();
-        $permission->code = 'Người dùng';
-        $permission->name = '';
+        $permission->code = '';
+        $permission->name = 'Người dùng';
         $permission->parent_id = '0';
         $permission->save();
 
         $permission = new Permission();
-        $permission->code = 'Quyền';
-        $permission->name = '';
+        $permission->code = '';
+        $permission->name = 'Quyền';
         $permission->parent_id = '0';
         $permission->save();
 
@@ -110,25 +110,25 @@ class PermissionSeeder extends Seeder
 
         $permission = new Permission();
         $permission->code = 'role_view';
-        $permission->name = 'Xem người dùng';
+        $permission->name = 'Xem quyền';
         $permission->parent_id = '4';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'role_create';
-        $permission->name = 'Thêm người dùng';
+        $permission->name = 'Thêm quyền';
         $permission->parent_id = '4';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'role_edit';
-        $permission->name = 'Sửa người dùng';
+        $permission->name = 'Sửa quyền';
         $permission->parent_id = '4';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'role_delete';
-        $permission->name = 'Xóa người dùng';
+        $permission->name = 'Xóa quyền';
         $permission->parent_id = '4';
         $permission->save();
     }

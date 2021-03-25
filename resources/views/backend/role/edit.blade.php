@@ -1,27 +1,43 @@
-@if(!checkPer($_SESSION['user']['id'], 'role_view'))
-    @php(header('Location: /superFood_MVC/admin/dashboard'))
-@endif
-@extends('admin.layouts.master')
-@section('title'){{'Add Role'}}@endsection
+@extends('backend.layouts.master')
+@section('title'){{'Edit Role'}}@endsection
 @section('content')
     <div id="layoutSidenav">
-        @include('admin.layouts.sideNav')
+        @include('backend.layouts.sideNav')
         <div id="layoutSidenav_content" style="background: #f2f3f8">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Thêm quyền</h1>
+                    <h1 class="mt-4">Sửa vai trò</h1>
                     <ol class="breadcrumb mb-4" style="background: white">
-                        <li class="breadcrumb-item"><a href="/superFood_MVC/admin/dashboard">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Thêm quyền</li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Thêm vai trò</li>
                     </ol>
-                    <form action="/superFood_MVC/admin/roles/update/{{$role->id}}" method="POST">
+                    <form action="{{route('role.update', $role->id)}}" method="POST">
+                        @csrf
+                        @method('put')
                         <div class="role__content row">
                             <div class="col-md-4">
                                 <div class="role__left">
                                     <div class="form-group">
-                                        <label for="roleNameUpdate">Tên quyền:</label>
-                                        <input value="{{$role->name}}" type="text" name="roleNameUpdate"
-                                               class="form-control" id="roleNameUpdate">
+                                        <label for="roleCodeEdit">Code:</label>
+                                        <input value="{{$role->code}}" type="text" name="code"
+                                               class="form-control @error('code') is-invalid @enderror"
+                                               id="roleCodeEdit">
+                                        @error('code')
+                                        <span style="display: block" class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="roleNameEdit">Tên:</label>
+                                        <input value="{{$role->name}}" type="text" name="name"
+                                               class="form-control @error('name') is-invalid @enderror"
+                                               id="roleNameEdit">
+                                        @error('name')
+                                        <span style="display: block" class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
                                     </div>
                                     <button type="submit"
                                             class="btn btn-primary addBtn">Lưu
@@ -30,44 +46,33 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="role__right">
-                                    @php($code = '')
-                                    @foreach ($permissions as $permission)
-                                        @php($module_name = @explode('_', $permission->code)[0])
-                                        @if ($module_name != $code)
-                                            @php($code = $module_name)
-                                            @if ($module_name === "post")
-                                                @php( $module_name = "Bài viết" )
-                                            @elseif ($module_name === "product")
-                                                @php($module_name = "Sản phẩm")
-                                            @elseif ($module_name === "role")
-                                                @php($module_name = "Quyền")
-                                            @elseif ($module_name === "user")
-                                                @php($module_name = "Người dùng")
-                                            @elseif ($module_name === "animation")
-                                                @php($module_name = "Hiệu ứng")
-                                            @elseif ($module_name === "widget")
-                                                @php($module_name = "Widget")
-                                            @endif
-                                            <label class='perChecked' style="margin-top: 30px">
+                                    <label style="margin-top: 30px">
+                                        <input
+                                            style='margin-right: 5px;' class="perAll"
+                                            type='checkbox'> Chọn tất cả
+                                    </label>
+                                    @foreach($parentPermissions as $parentPermission)
+                                        <div class="parentCheck">
+                                            <label>
                                                 <input
-                                                        style='margin-right: 5px;'
-                                                        name='inputPers'
-                                                        type='checkbox' checked
-                                                        value="{{$permission->id}}">{{$module_name}}
+                                                    style='margin-right: 5px; margin-left: 30px'
+                                                    name='inputPers' class="perChecked"
+                                                    type='checkbox'
+                                                    value="{{$parentPermission->id}}">{{$parentPermission->name}}
                                             </label>
-                                        @endif
-                                        <label style="display: inline-block; width: 100%; margin-left: 20px">
-                                            <input style="margin-right: 5px;" name="pers[]"
-                                                   type="checkbox"
-                                                   @php($pers_checked = [])
-                                                   @foreach($role_permissions as $role_permission)
-                                                   @php($pers_checked[] = $role_permission->permission_id)
-                                                   @endforeach
-                                                   @if (in_array($permission->id, $pers_checked))
-                                                   checked
-                                                   @endif
-                                                   value="{{$permission->id}}">{{$permission->name}}
-                                        </label>
+                                            @foreach($parentPermission->permissionChildren as $permissionChild)
+                                                <label
+                                                    style="display: inline-block; width: 100%; margin-left: 60px">
+                                                    <input class="childrenCheck" style="margin-right: 5px;"
+                                                           name="pers[]"
+                                                           type="checkbox"
+                                                           @if($role->permissions->contains($permissionChild))
+                                                           checked
+                                                           @endif
+                                                           value="{{$permissionChild->id}}">{{$permissionChild->name}}
+                                                </label>
+                                            @endforeach
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -75,7 +80,7 @@
                     </form>
                 </div>
             </main>
-            @include('admin.layouts.footer')
+            @include('backend.layouts.footer')
         </div>
     </div>
 @endsection

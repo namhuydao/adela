@@ -16,12 +16,17 @@
                     <form action="{{route('user.update', $user->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-{{--                        <div class="form-group position-relative text-center">--}}
-{{--                            <img class="imagesForm" width="100" height="100" src="/superFood_MVC/backend/assets/images/{{$user->image}}"/>--}}
-{{--                            <label class="formLabel" for="fileToAddUser"><i class="fas fa-pen"></i><input--}}
-{{--                                        style="display: none" type="file" id="fileToAddUser"--}}
-{{--                                        name="fileToUpload"></label>--}}
-{{--                        </div>--}}
+                        <div class="form-group position-relative text-center">
+                            <img class="imagesForm" width="100" height="100" src="
+                            @if($user->image)
+                            {{asset('backend/assets/images').'/'.$user->image}}
+                            @else
+                            {{asset('backend/assets/images/user/default.png')}}
+                            @endif"/>
+                            <label class="formLabel" for="fileToAddUser"><i class="fas fa-pen"></i><input
+                                        style="display: none" type="file" id="fileToAddUser"
+                                        name="fileToUpload"></label>
+                        </div>
                         <div class="form-group">
                             <label for="userFirstNameUpdate">Tên:</label>
                             <input value="{{$user->firstname}}" type="text" name="firstname" class="form-control @error('firstname') is-invalid @enderror" id="userFirstNameUpdate">

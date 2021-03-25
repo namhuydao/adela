@@ -35,7 +35,11 @@
                                     @foreach($users as $key => $user)
                                         <tr>
                                             <td class="text-center"><img
-                                                    src=""
+                                                    src="@if($user->image)
+                                                    {{asset('backend/assets/images').'/'.$user->image}}
+                                                    @else
+                                                    {{asset('backend/assets/images/user/default.png')}}
+                                                    @endif"
                                                     alt="" width="100" height="100"></td>
                                             <td>{{$user->firstname}}</td>
                                             <td>{{$user->lastname}}</td>

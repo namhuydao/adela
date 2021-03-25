@@ -62,6 +62,12 @@ class ProductController extends Controller
         $product->category_id = $request->category;
         $product->save();
 
+        if ($request->hasFile('fileToUpload')){
+            $image_src = uploadFile($_FILES['fileToUpload'], 'product');
+            $product->avatar = $image_src;
+            $product->save();
+        }
+
         $product->tags()->sync($request->tags);
 
         return redirect()->route('product');
@@ -124,6 +130,12 @@ class ProductController extends Controller
         $product->category_id = $request->category;
         $product->save();
 
+        if ($request->hasFile('fileToUpload')){
+            $image_src = uploadFile($_FILES['fileToUpload'], 'product');
+            $product->avatar = $image_src;
+            $product->save();
+        }
+        
         $product->tags()->sync($request->tags);
 
         return redirect()->route('product');

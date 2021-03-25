@@ -15,12 +15,12 @@
                 <div style="width: 40%; margin: auto">
                     <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-{{--                        <div class="form-group position-relative text-center">--}}
-{{--                            <img class="imagesForm" width="100" src="/superFood/backend/assets/images/user/defaultImage.png"/>--}}
-{{--                            <label class="formLabel" for="fileToAddUser"><i class="fas fa-pen"></i><input--}}
-{{--                                        style="display: none" type="file" id="fileToAddUser"--}}
-{{--                                        name="fileToUpload"></label>--}}
-{{--                        </div>--}}
+                        <div class="form-group position-relative text-center">
+                            <img class="imagesForm" width="100" height="100" src="{{asset('backend/assets/images/user/default.png')}}"/>
+                            <label class="formLabel" for="fileToAddUser"><i class="fas fa-pen"></i><input
+                                        style="display: none" type="file" id="fileToAddUser"
+                                        name="fileToUpload"></label>
+                        </div>
                         <div class="form-group">
                             <label for="userFirstNameAdd">Tên:</label>
                             <input value="{{old('firstname')}}" type="text" name="firstname" class="form-control @error('firstname') is-invalid @enderror" id="userFirstNameAdd">

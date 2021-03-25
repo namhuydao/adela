@@ -60,7 +60,11 @@ class PostController extends Controller
         $post->author_id = auth()->user()->id;
         $post->category_id = $request->category;
         $post->save();
-
+        if ($request->hasFile('fileToUpload')){
+            $image_src = uploadFile($_FILES['fileToUpload'], 'post');
+            $post->image = $image_src;
+            $post->save();
+        }
         $post->tags()->sync($request->tags);
 
         return redirect()->route('post');
@@ -118,6 +122,12 @@ class PostController extends Controller
         $post->content = $request->input('content');
         $post->category_id = $request->category;
         $post->save();
+
+        if ($request->hasFile('fileToUpload')){
+            $image_src = uploadFile($_FILES['fileToUpload'], 'post');
+            $post->image = $image_src;
+            $post->save();
+        }
 
         $post->tags()->sync($request->tags);
 

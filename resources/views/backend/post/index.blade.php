@@ -36,7 +36,12 @@
                                     @foreach($posts as $post)
                                         <tr>
                                             <td class="text-center"><img
-                                                    src=""
+                                                    src="
+                                                @if($post->image)
+                                                    {{asset('backend/assets/images').'/'.$post->image}}
+                                                    @else
+                                                    {{asset('backend/assets/images/post/default.png')}}
+                                                    @endif"
                                                     alt="" width="100" height="100"></td>
                                             <td>{{$post->title}}</td>
                                             <td>{{$post->description}}</td>

@@ -22,34 +22,19 @@
 
 })(jQuery);
 
-if($('#profileInfo_avatar').attr('src') === 'usersUpload/defaultImage.png'){
+if ($('#profileInfo_avatar').attr('src') === 'usersUpload/defaultImage.png') {
     $('.avatarDelete').css('display', 'none');
-}else{
+} else {
     $('.avatarDelete').css('display', 'block');
 }
-$('.perChecked input').each(function() {
-    $(this).click(function (){
-        if($(this).prop("checked") === true) {
-            $(this).parent().next().children().prop('checked', true)
-            $(this).parent().next().next().children().prop('checked', true)
-            $(this).parent().next().next().next().children().prop('checked', true)
-            $(this).parent().next().next().next().next().children().prop('checked', true)
-        }
-        else if($(this).prop("checked") === false) {
-            $(this).parent().next().children().prop('checked', false)
-            $(this).parent().next().next().children().prop('checked', false)
-            $(this).parent().next().next().next().children().prop('checked', false)
-            $(this).parent().next().next().next().next().children().prop('checked', false)
-        }
-    })
+$('.perChecked').click(function () {
+    $(this).parents('.parentCheck').find('.childrenCheck').prop('checked', $(this).prop("checked"))
+});
+$('.perAll').click(function () {
+    $(this).parents().find('.childrenCheck, .perChecked').prop('checked', $(this).prop("checked"))
 });
 
-CKEDITOR.replace('newsContentAdd');
-CKEDITOR.replace('newsContentUpdate');
-CKEDITOR.replace('productContentAdd');
-CKEDITOR.replace('productContentUpdate');
-CKEDITOR.replace('content_addWidget');
-CKEDITOR.replace('content_editWidget');
+CKEDITOR.replace('content');
 
 // $(document).ready(function () {
 //     $( "button.delete" ).click(function( event ) {
@@ -70,6 +55,6 @@ CKEDITOR.replace('content_editWidget');
 //     });
 // });
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('.userRoleMultiple').select2();
 });

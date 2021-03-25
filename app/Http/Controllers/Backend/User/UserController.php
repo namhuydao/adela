@@ -46,11 +46,13 @@ class UserController extends Controller
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
             'email' => 'required|email|unique:users',
-            'password' => 'required|max:50',
+            'password' => 'required|max:50|confirmed',
         ], [
             'firstname.required' => 'Không được để trống',
             'lastname.required' => 'Không được để trống',
             'email.required' => 'Không được để trống',
+            'password.required' => 'Không được để trống',
+            'password.confirmed' => 'Mật khẩu không khớp',
             'email.email' => 'Email không đúng định dạng',
             'email.unique' => 'Email đã tồn tại'
         ]);
@@ -63,6 +65,11 @@ class UserController extends Controller
         $user->email_verified_at = now();
         $user->save();
 
+        if ($request->hasFile('fileToUpload')){
+            $image_src = uploadFile($_FILES['fileToUpload'], 'user');
+            $user->image = $image_src;
+            $user->save();
+        }
         $verified_user = new VerifyUser();
         $verified_user->token = Str::random(60);
         $verified_user->user_id = $user->id;
@@ -124,11 +131,11 @@ class UserController extends Controller
         $user->password = $request->password ? Hash::make($request->password) : $user->password;
         $user->save();
 
-        $verified_user = new VerifyUser();
-        $verified_user->token = Str::random(60);
-        $verified_user->user_id = $user->id;
-        $verified_user->save();
-
+        if ($request->hasFile('fileToUpload')){
+            $image_src = uploadFile($_FILES['fileToUpload'], 'user');
+            $user->image = $image_src;
+            $user->save();
+        }
         $user->roles()->sync($request->role_id);
 
         return redirect()->route('user');
