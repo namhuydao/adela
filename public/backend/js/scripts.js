@@ -22,11 +22,6 @@
 
 })(jQuery);
 
-if ($('#profileInfo_avatar').attr('src') === 'usersUpload/defaultImage.png') {
-    $('.avatarDelete').css('display', 'none');
-} else {
-    $('.avatarDelete').css('display', 'block');
-}
 $('.perChecked').click(function () {
     $(this).parents('.parentCheck').find('.childrenCheck').prop('checked', $(this).prop("checked"))
 });

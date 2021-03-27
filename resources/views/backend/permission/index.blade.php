@@ -41,7 +41,6 @@
                                                 <form action="{{route('permission.destroy',$permission->id)}}"
                                                       method="POST">
                                                     @csrf
-                                                    @method('delete')
                                                     <button class="delete btn btn-danger">Xóa</button>
                                                 </form>
                                             </td>

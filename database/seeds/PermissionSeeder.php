@@ -12,124 +12,95 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
+
         $permission = new Permission();
         $permission->code = '';
-        $permission->name = 'Sản phẩm';
+        $permission->name = 'user';
         $permission->parent_id = '0';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = '';
-        $permission->name = 'Tin tức';
+        $permission->name = 'role';
         $permission->parent_id = '0';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = '';
-        $permission->name = 'Người dùng';
+        $permission->name = 'permission';
         $permission->parent_id = '0';
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->code = '';
-        $permission->name = 'Quyền';
-        $permission->parent_id = '0';
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->code = 'product_view';
-        $permission->name = 'Xem sản phẩm';
-        $permission->parent_id = '1';
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->code = 'product_create';
-        $permission->name = 'Thêm sản phẩm';
-        $permission->parent_id = '1';
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->code = 'product_edit';
-        $permission->name = 'Sửa sản phẩm';
-        $permission->parent_id = '1';
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->code = 'product_delete';
-        $permission->name = 'Xóa sản phẩm';
-        $permission->parent_id = '1';
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->code = 'post_view';
-        $permission->name = 'Xem tin tức';
-        $permission->parent_id = '2';
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->code = 'post_create';
-        $permission->name = 'Thêm tin tức';
-        $permission->parent_id = '2';
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->code = 'post_edit';
-        $permission->name = 'Sửa tin tức';
-        $permission->parent_id = '2';
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->code = 'post_delete';
-        $permission->name = 'Xóa tin tức';
-        $permission->parent_id = '2';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'user_view';
-        $permission->name = 'Xem người dùng';
-        $permission->parent_id = '3';
+        $permission->name = 'view user';
+        $permission->parent_id = '1';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'user_create';
-        $permission->name = 'Thêm người dùng';
-        $permission->parent_id = '3';
+        $permission->name = 'create user';
+        $permission->parent_id = '1';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'user_edit';
-        $permission->name = 'Sửa người dùng';
-        $permission->parent_id = '3';
+        $permission->name = 'edit user';
+        $permission->parent_id = '1';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'user_delete';
-        $permission->name = 'Xóa người dùng';
-        $permission->parent_id = '3';
+        $permission->name = 'delete user';
+        $permission->parent_id = '1';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'role_view';
-        $permission->name = 'Xem quyền';
-        $permission->parent_id = '4';
+        $permission->name = 'view role';
+        $permission->parent_id = '2';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'role_create';
-        $permission->name = 'Thêm quyền';
-        $permission->parent_id = '4';
+        $permission->name = 'create role';
+        $permission->parent_id = '2';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'role_edit';
-        $permission->name = 'Sửa quyền';
-        $permission->parent_id = '4';
+        $permission->name = 'edit role';
+        $permission->parent_id = '2';
         $permission->save();
 
         $permission = new Permission();
         $permission->code = 'role_delete';
-        $permission->name = 'Xóa quyền';
-        $permission->parent_id = '4';
+        $permission->name = 'delete role';
+        $permission->parent_id = '2';
+        $permission->save();
+
+        $permission = new Permission();
+        $permission->code = 'permission_view';
+        $permission->name = 'view permission';
+        $permission->parent_id = '3';
+        $permission->save();
+
+        $permission = new Permission();
+        $permission->code = 'permission_create';
+        $permission->name = 'create permission';
+        $permission->parent_id = '3';
+        $permission->save();
+
+        $permission = new Permission();
+        $permission->code = 'permission_edit';
+        $permission->name = 'edit permission';
+        $permission->parent_id = '3';
+        $permission->save();
+
+        $permission = new Permission();
+        $permission->code = 'permission_delete';
+        $permission->name = 'delete permission';
+        $permission->parent_id = '3';
         $permission->save();
     }
 }

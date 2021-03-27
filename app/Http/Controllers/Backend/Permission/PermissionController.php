@@ -15,24 +15,26 @@ class PermissionController extends Controller
     }
     public function create()
     {
-        return view('backend.permission.create');
+        $html = getPermission($parent_id = 0);
+        return view('backend.permission.create', compact('html'));
     }
 
     public function store(Request $request)
     {
-        $parentPermission = new Permission();
-        $parentPermission->name = $request->module_parent;
-        $parentPermission->parent_id = 0;
-        $parentPermission->save();
+        $request->validate([
+            'name' => 'required'
+        ],
+            [
+                'name.required' => 'Không được để trống'
+            ]);
 
-        foreach ($request->module_child as $value){
-            $permission = new Permission();
-            $permission->name = $value;
-            $permission->parent_id = $parentPermission->id;
-            $permission->code = $request->module_parent . '_' . $value;
-            $permission->save();
-        }
-        return redirect()->back();
+        $permission = new Permission();
+        $permission->code = $request->code;
+        $permission->name = $request->name;
+        $permission->parent_id = $request->permission_parent;
+        $permission->save();
+
+        return redirect()->route('permission');
     }
 
     /**
@@ -43,11 +45,25 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
+        $permission = Permission::find($id);
+        return view('backend.permission.edit', compact('permission'));
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required'
+        ],
+            [
+                'name.required' => 'Không được để trống'
+            ]);
 
+        $permission = Permission::find($id);
+        $permission->code = $request->code;
+        $permission->name = $request->name;
+        $permission->save();
+
+        return back()->with('success', 'Sửa thành công');
     }
 
     /**
@@ -58,6 +74,7 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-
+        Permission::destroy($id);
+        return  redirect()->route('permission');
     }
 }

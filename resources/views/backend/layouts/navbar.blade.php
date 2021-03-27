@@ -19,9 +19,9 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false"><img style="border-radius: 50%" src="@if(auth()->user()->image)
-                {{asset('backend/assets/images').'/'.auth()->user()->image}}
+                {{asset('backend/images').'/'.auth()->user()->image}}
                 @else
-                {{asset('backend/assets/images/user/default.png')}}
+                {{asset('backend/images/user/defaultImage.png')}}
                 @endif
                     " alt="" width="30" height="30"></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">

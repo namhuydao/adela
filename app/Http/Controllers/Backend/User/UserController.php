@@ -66,7 +66,7 @@ class UserController extends Controller
         $user->save();
 
         if ($request->hasFile('fileToUpload')){
-            $image_src = uploadFile($_FILES['fileToUpload'], 'user');
+            $image_src = saveFile($request->file('fileToUpload'), 'user/' . date('Y/m/d'));
             $user->image = $image_src;
             $user->save();
         }
@@ -132,7 +132,7 @@ class UserController extends Controller
         $user->save();
 
         if ($request->hasFile('fileToUpload')){
-            $image_src = uploadFile($_FILES['fileToUpload'], 'user');
+            $image_src = saveFile($request->file('fileToUpload'), 'user/' . date('Y/m/d'));
             $user->image = $image_src;
             $user->save();
         }

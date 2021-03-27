@@ -36,39 +36,36 @@
                                     </thead>
                                     <tbody>
                                     @foreach($products as $key => $product)
-                                        @if(auth()->user()->id == $product->user->id)
-                                            <tr>
-                                                <td class="text-center"><img
-                                                        src="
+                                        <tr>
+                                            <td class="text-center"><img
+                                                    src="
                                                         @if($product->avatar)
-                                                        {{asset('backend/assets/images').'/'.$product->avatar}}
-                                                        @else
-                                                        {{asset('backend/assets/images/product/default.png')}}
-                                                        @endif"
-                                                        alt="" width="100" height="100"></td>
-                                                <td>{{$product->name}}</td>
-                                                <td>{{$product->description}}</td>
-                                                <td>{{$product->user->firstname . ' ' . $product->user->lastname}}</td>
-                                                <td>{{$product->base_price}}</td>
-                                                <td>{{$product->discount_price}}</td>
-                                                <td>{{$product->category->name}}</td>
-                                                <td>
-                                                    @foreach($product->tags as $tag)
-                                                        {{$tag->name}},
-                                                    @endforeach
-                                                </td>
-                                                <td class="d-flex">
-                                                    <a class="btn btn-primary mr-1"
-                                                       href="{{route('product.edit',$product->id)}}">Sửa</a>
-                                                    <form action="{{route('product.destroy',$product->id)}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="delete btn btn-danger">Xóa</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endif
+                                                    {{asset('backend/images').'/'.$product->avatar}}
+                                                    @else
+                                                    {{asset('backend/images/product/default.png')}}
+                                                    @endif"
+                                                    alt="" width="100" height="100"></td>
+                                            <td>{{$product->name}}</td>
+                                            <td>{{$product->description}}</td>
+                                            <td>{{$product->user->firstname . ' ' . $product->user->lastname}}</td>
+                                            <td>{{$product->base_price}}</td>
+                                            <td>{{$product->discount_price}}</td>
+                                            <td>{{$product->category->name}}</td>
+                                            <td>
+                                                @foreach($product->tags as $tag)
+                                                    {{$tag->name}},
+                                                @endforeach
+                                            </td>
+                                            <td class="d-flex">
+                                                <a class="btn btn-primary mr-1"
+                                                   href="{{route('product.edit',$product->id)}}">Sửa</a>
+                                                <form action="{{route('product.destroy',$product->id)}}"
+                                                      method="POST">
+                                                    @csrf
+                                                    <button class="delete btn btn-danger">Xóa</button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>

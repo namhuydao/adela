@@ -18,7 +18,13 @@ class Product extends Model
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'seller_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImages::class,'product_id');
     }
 }

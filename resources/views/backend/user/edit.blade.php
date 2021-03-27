@@ -13,18 +13,20 @@
                     </ol>
                 </div>
                 <div style="width: 40%; margin: auto">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{session('success')}}</div>
+                    @endif
                     <form action="{{route('user.update', $user->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('put')
                         <div class="form-group position-relative text-center">
                             <img class="imagesForm" width="100" height="100" src="
                             @if($user->image)
-                            {{asset('backend/assets/images').'/'.$user->image}}
+                            {{asset('backend/images').'/'.$user->image}}
                             @else
-                            {{asset('backend/assets/images/user/default.png')}}
+                            {{asset('backend/images/user/defaultImage.png')}}
                             @endif"/>
                             <label class="formLabel" for="fileToAddUser"><i class="fas fa-pen"></i><input
-                                        style="display: none" type="file" id="fileToAddUser"
+                                        style="display: none" type="file" id="fileToAddUser" class="imagesAvatar"
                                         name="fileToUpload"></label>
                         </div>
                         <div class="form-group">
@@ -79,4 +81,23 @@
             @include('backend.layouts.footer')
         </div>
     </div>
+@endsection
+@section('footer_script')
+    <script>
+        function read(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('.imagesForm').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        $(".imagesAvatar").change(function() {
+            read(this);
+        });
+    </script>
 @endsection

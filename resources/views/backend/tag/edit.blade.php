@@ -13,9 +13,11 @@
                     </ol>
                 </div>
                 <div style="width: 40%; margin: auto">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{session('success')}}</div>
+                    @endif
                     <form action="{{route('tag.update', $tag->id)}}" method="POST">
                         @csrf
-                        @method('put')
                         <div class="form-group">
                             <label for="tagNameUpdate">Tên:</label>
                             <input value="{{$tag->name}}" type="text" name="name" class="form-control" id="tagNameUpdate">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Product;
 
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\ProductImages;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+
         $tags = Tag::all();
         $html = getProductCategory($parent_id = 0);
         return view('backend.product.create', compact('html', 'tags'));
@@ -63,9 +65,22 @@ class ProductController extends Controller
         $product->save();
 
         if ($request->hasFile('fileToUpload')){
-            $image_src = uploadFile($_FILES['fileToUpload'], 'product');
+            $image_src = saveFile($request->file('fileToUpload'), 'product/' . date('Y/m/d'));
             $product->avatar = $image_src;
             $product->save();
+        }
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $img_path = saveFile($file, 'product/' . date('Y/m/d'));
+                $product_images = new ProductImages();
+                $product_images->product_id = $product->id;
+                $product_images->path = $img_path;
+                $product_images->save();
+            }
+        } else {
+            if ($request->get('delete_img') == 1) {
+                ProductImages::where('product_id', $product->id)->delete();
+            }
         }
 
         $product->tags()->sync($request->tags);
@@ -131,14 +146,28 @@ class ProductController extends Controller
         $product->save();
 
         if ($request->hasFile('fileToUpload')){
-            $image_src = uploadFile($_FILES['fileToUpload'], 'product');
+            $image_src = saveFile($request->file('fileToUpload'), 'product/' . date('Y/m/d'));
             $product->avatar = $image_src;
             $product->save();
         }
-        
+        if ($request->hasFile('images')) {
+            ProductImages::where('product_id', $product->id)->delete();
+            foreach ($request->file('images') as $file) {
+                $img_path = saveFile($file, 'product/' . date('Y/m/d'));
+                $product_images = new ProductImages();
+                $product_images->product_id = $product->id;
+                $product_images->path = $img_path;
+                $product_images->save();
+            }
+        } else {
+            if ($request->get('delete_img') == 1) {
+                ProductImages::where('product_id', $product->id)->delete();
+            }
+        }
+
         $product->tags()->sync($request->tags);
 
-        return redirect()->route('product');
+        return back()->with('success', 'Sửa thành công');
     }
 
     /**

@@ -17,9 +17,9 @@
                                 <div class="profile-name">
                                     <img src="
                                      @if($user->image)
-                                    {{asset('backend/assets/images').'/'.$user->image}}
+                                    {{asset('backend/images').'/'.$user->image}}
                                     @else
-                                    {{asset('backend/assets/images/user/default.png')}}
+                                    {{asset('backend/images/user/defaultImage.png')}}
                                     @endif" alt="" width="150" height="150">
                                     <h5>{{$user->lastname}} {{$user->firstname}}</h5>
                                 </div>

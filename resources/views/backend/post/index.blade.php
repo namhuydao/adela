@@ -38,9 +38,9 @@
                                             <td class="text-center"><img
                                                     src="
                                                 @if($post->image)
-                                                    {{asset('backend/assets/images').'/'.$post->image}}
+                                                    {{asset('backend/images').'/'.$post->image}}
                                                     @else
-                                                    {{asset('backend/assets/images/post/default.png')}}
+                                                    {{asset('backend/images/post/default.png')}}
                                                     @endif"
                                                     alt="" width="100" height="100"></td>
                                             <td>{{$post->title}}</td>
@@ -58,7 +58,6 @@
                                                 <form action="{{route('post.destroy',$post->id)}}"
                                                       method="POST">
                                                     @csrf
-                                                    @method('delete')
                                                     <button class="delete btn btn-danger">Xóa</button>
                                                 </form>
 

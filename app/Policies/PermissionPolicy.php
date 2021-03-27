@@ -28,7 +28,7 @@ class PermissionPolicy
      */
     public function view(User $user)
     {
-
+        return $user->checkPermissionAccess('permission_view');
     }
 
     /**
@@ -39,7 +39,7 @@ class PermissionPolicy
      */
     public function create(User $user)
     {
-        return $user->checkPermissionAccess('permission_edit');
+        return $user->checkPermissionAccess('permission_create');
     }
 
     /**
@@ -50,7 +50,7 @@ class PermissionPolicy
      */
     public function update(User $user)
     {
-
+        return $user->checkPermissionAccess('permission_edit');
     }
 
     /**
@@ -61,7 +61,7 @@ class PermissionPolicy
      */
     public function delete(User $user)
     {
-        //
+        return $user->checkPermissionAccess('permission_delete');
     }
 
     /**

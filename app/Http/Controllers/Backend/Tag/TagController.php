@@ -95,7 +95,7 @@ class TagController extends Controller
         $tag->name = $request->name;
         $tag->save();
 
-        return redirect()->route('tag');
+        return back()->with('success', 'Sửa thành công');
     }
 
     /**

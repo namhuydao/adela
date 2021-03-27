@@ -205,3 +205,16 @@
     border-radius: 5px;
     padding: 30px 30px 30px 60px;
 }
+
+.img-list img {
+    max-width: 100px;
+    margin: 10px 0;
+}
+.delete-img {
+    cursor: pointer;
+    margin-bottom: 30px;
+    color: red;
+}
+.labelProduct:hover{
+    cursor: pointer;
+}

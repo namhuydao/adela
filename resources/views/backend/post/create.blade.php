@@ -16,9 +16,9 @@
                     <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                             <div class="form-group position-relative text-center">
-                                <img class="imagesForm" width="100" height="100" src="{{asset('backend/assets/images/post/default.png')}}"/>
+                                <img class="imagesForm" width="100" height="100" src="{{asset('backend/images/post/default.png')}}"/>
                                 <label class="formLabel" for="fileToAddNews"><i class="fas fa-pen"></i><input
-                                            style="display: none" type="file" id="fileToAddNews"
+                                            style="display: none" type="file" id="fileToAddNews" class="imagesAvatar"
                                             name="fileToUpload"></label>
                             </div>
                             <div class="form-group">
@@ -69,4 +69,22 @@
         </div>
     </div>
 @endsection
+@section('footer_script')
+    <script>
+        function read(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function(e) {
+                    $('.imagesForm').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        $(".imagesAvatar").change(function() {
+            read(this);
+        });
+    </script>
+@endsection

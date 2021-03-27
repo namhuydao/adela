@@ -12,7 +12,7 @@ class PermissionRoleSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 5; $i <= 20; $i++) {
+        for ($i = 3; $i <= 15; $i++) {
             $permissionRole = new PermissionRole();
             $permissionRole->role_id = '1';
             $permissionRole->permission_id = $i;

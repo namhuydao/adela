@@ -39,7 +39,6 @@
                                                 <form action="{{route('postCategory.destroy',$category->id)}}"
                                                       method="POST">
                                                     @csrf
-                                                    @method('delete')
                                                     <button class="delete btn btn-danger">Xóa</button>
                                                 </form>
                                             </td>

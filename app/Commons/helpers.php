@@ -1,6 +1,8 @@
 <?php
 
 use App\Components\CategoriesRecursive;
+use App\Components\PermissionRecursive;
+use App\Permission;
 use App\PostCategory;
 use App\ProductCategory;
 
@@ -19,6 +21,13 @@ function getPostCategory($parent_id): string
     return $recursive->categoriesRecursive($parent_id);
 }
 
+function getPermission($parent_id): string
+{
+    $data = Permission::all();
+    $recursive = new PermissionRecursive($data);
+    return $recursive->PermissionRecursive($parent_id);
+}
+
 function getProductCategory($parent_id): string
 {
     $data = ProductCategory::all();
@@ -28,7 +37,7 @@ function getProductCategory($parent_id): string
 
 function uploadFile($file, $path): string
 {
-    $base_folder = 'backend/assets/images';
+    $base_folder = 'backend/images';
 
     //  Lấy tên file
     $name = explode('.', $file['name']);
@@ -46,4 +55,19 @@ function uploadFile($file, $path): string
 
     move_uploaded_file($file['tmp_name'], $base_folder . '/' . $dir_name . '/' . $file_name_insert);
     return $dir_name . '/' . $file_name_insert;
+}
+
+function saveFile($file, $path)
+{
+    $base_path = public_path() . '/backend/assets/images/';
+    $dir_name = $base_path . $path;
+    if (!is_dir($dir_name)) {
+        // Tạo thư mục của chúng tôi nếu nó không tồn tại
+        mkdir($dir_name, 0755, true);
+    }
+    $file_name = $file->getClientOriginalName();
+    $name = explode('.', $file_name);
+    $file_name_insert = str_replace(end($name), '', $file_name) . end($name);
+    $file->move(base_path() . '/public/backend/assets/images/' . $path, $file_name_insert);
+    return $path . '/' . $file_name_insert;
 }

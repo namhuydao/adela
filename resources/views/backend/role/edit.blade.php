@@ -13,10 +13,12 @@
                     </ol>
                     <form action="{{route('role.update', $role->id)}}" method="POST">
                         @csrf
-                        @method('put')
                         <div class="role__content row">
                             <div class="col-md-4">
                                 <div class="role__left">
+                                    @if(session('success'))
+                                        <div class="alert alert-success">{{session('success')}}</div>
+                                    @endif
                                     <div class="form-group">
                                         <label for="roleCodeEdit">Code:</label>
                                         <input value="{{$role->code}}" type="text" name="code"

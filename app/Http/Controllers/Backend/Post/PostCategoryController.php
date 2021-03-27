@@ -97,7 +97,7 @@ class PostCategoryController extends Controller
         $postCategory->name = $request->name;
         $postCategory->save();
 
-        return redirect()->route('postCategory');
+        return back()->with('success', 'Sửa thành công');
     }
 
     /**

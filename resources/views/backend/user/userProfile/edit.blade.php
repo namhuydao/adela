@@ -17,9 +17,9 @@
                                 <div class="profile-name">
                                     <img src="
                                     @if($user->image)
-                                    {{asset('backend/assets/images').'/'.$user->image}}
+                                    {{asset('backend/images').'/'.$user->image}}
                                     @else
-                                    {{asset('backend/assets/images/user/default.png')}}
+                                    {{asset('backend/images/user/defaultImage.png')}}
                                     @endif" alt="" width="150"
                                          height="150">
                                     <h5>{{$user->lastname}} {{$user->firstname}}</h5>
@@ -79,18 +79,19 @@
                                         <div class="avatar form-group">
                                             <p>Avatar</p>
                                             <div class="avatar_img" style="width: 60%">
-                                                <img id="profileInfo_avatar" src="
+                                                <input type="hidden" name="delete_img" value="0">
+                                                <img id="profileInfo_avatar" class="imagesForm" src="
                                                 @if($user->image)
-                                                {{asset('backend/assets/images').'/'.$user->image}}
+                                                {{asset('backend/images').'/'.$user->image}}
                                                 @else
-                                                {{asset('backend/assets/images/user/default.png')}}
+                                                {{asset('backend/images/user/defaultImage.png')}}
                                                 @endif" alt="" width="120" height="120">
                                                 <label class="avatarLabel" for="avatar"><i class="fas fa-pen"></i><input
-                                                        style="display: none" type="file" id="avatar"
+                                                        style="display: none" type="file" id="avatar" class="imagesAvatar"
                                                         name="fileToUpload"></label>
-                                                <a href="/superFood_MVC/admin/userProfile/deleteImage/{{$user->id}}"
+                                                <p
                                                    style="border: none; background: transparent"
-                                                   class="avatarDelete"><i class="fas fa-times"></i></a>
+                                                   class="avatarDelete"><i class="fas fa-times"></i></p>
                                             </div>
                                         </div>
                                         <div class="name form-group">
@@ -172,4 +173,27 @@
         </div>
     </div>
 @endsection
+@section('footer_script')
+    <script>
+        function read(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function(e) {
+                    $('.imagesForm').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        $(".imagesAvatar").change(function() {
+            read(this);
+        });
+
+        $('.avatarDelete').click(function () {
+            $('input[name=delete_img]').val('1');
+            $('.imagesForm').attr('src', 'http:adela.test/backend/images/user/defaultImage.png')
+        });
+    </script>
+@endsection

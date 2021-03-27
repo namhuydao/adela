@@ -13,9 +13,11 @@
                     </ol>
                 </div>
                 <div style="width: 40%; margin: auto">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{session('success')}}</div>
+                    @endif
                     <form action="{{route('productCategory.update', $category->id)}}" method="POST">
                         @csrf
-                        @method('put')
                         <div class="form-group">
                             <label for="productCategoryNameUpdate">Tên:</label>
                             <input value="{{$category->name}}" type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="productCategoryNameUpdate">

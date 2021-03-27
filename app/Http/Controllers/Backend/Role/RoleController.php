@@ -105,7 +105,8 @@ class RoleController extends Controller
         $role->save();
 
         $role->permissions()->sync($request->pers);
-        return redirect()->route('role');
+
+        return back()->with('success', 'Sửa thành công');
     }
 
     /**

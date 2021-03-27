@@ -6,18 +6,18 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Quản lý phân quyền</h1>
+                    <h1 class="mt-4">Quản lý vai trò</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Quản lý phân quyền</li>
+                        <li class="breadcrumb-item active">Quản lý vai trò</li>
                     </ol>
-                        <a href="{{route('role.create')}}" class="btn btn-primary addBtn">Thêm quyền
+                        <a href="{{route('role.create')}}" class="btn btn-primary addBtn">Thêm vai trò
 
                         </a>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Bảng phân quyền
+                                Bảng vai trò
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -41,7 +41,6 @@
                                                     <form action="{{route('role.destroy',$role->id)}}"
                                                           method="POST">
                                                         @csrf
-                                                        @method('delete')
                                                         <button class="delete btn btn-danger">Xóa</button>
                                                     </form>
                                                 </td>

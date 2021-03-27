@@ -61,7 +61,7 @@ class PostController extends Controller
         $post->category_id = $request->category;
         $post->save();
         if ($request->hasFile('fileToUpload')){
-            $image_src = uploadFile($_FILES['fileToUpload'], 'post');
+            $image_src = saveFile($request->file('fileToUpload'), 'post/' . date('Y/m/d'));
             $post->image = $image_src;
             $post->save();
         }
@@ -124,14 +124,14 @@ class PostController extends Controller
         $post->save();
 
         if ($request->hasFile('fileToUpload')){
-            $image_src = uploadFile($_FILES['fileToUpload'], 'post');
+            $image_src = saveFile($request->file('fileToUpload'), 'post/' . date('Y/m/d'));
             $post->image = $image_src;
             $post->save();
         }
 
         $post->tags()->sync($request->tags);
 
-        return redirect()->route('post');
+        return back()->with('success', 'Sửa thành công');
     }
 
     /**

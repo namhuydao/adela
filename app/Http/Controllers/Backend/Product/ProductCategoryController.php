@@ -97,7 +97,7 @@ class ProductCategoryController extends Controller
         $productCategory->name = $request->name;
         $productCategory->save();
 
-        return redirect()->route('productCategory');
+        return back()->with('success', 'Sửa thành công');
     }
 
     /**
