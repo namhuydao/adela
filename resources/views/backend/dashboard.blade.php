@@ -67,7 +67,6 @@
                                         <th>Giá ưu đãi</th>
                                         <th>Danh mục</th>
                                         <th>Tags</th>
-                                        <th>Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -75,7 +74,11 @@
                                         @if(auth()->user()->id == $product->user->id)
                                             <tr>
                                                 <td class="text-center"><img
-                                                        src=""
+                                                        src="@if($product->avatar)
+                                                        {{asset('backend/images').'/'.$product->avatar}}
+                                                        @else
+                                                        {{asset('backend/images/product/default.png')}}
+                                                        @endif"
                                                         alt="" width="100" height="100"></td>
                                                 <td>{{$product->name}}</td>
                                                 <td>{{$product->description}}</td>
@@ -87,16 +90,6 @@
                                                     @foreach($product->tags as $tag)
                                                         {{$tag->name}},
                                                     @endforeach
-                                                </td>
-                                                <td class="d-flex">
-                                                    <a class="btn btn-primary mr-1"
-                                                       href="{{route('product.edit',$product->id)}}">Sửa</a>
-                                                    <form action="{{route('product.destroy',$product->id)}}"
-                                                          method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="delete btn btn-danger">Xóa</button>
-                                                    </form>
                                                 </td>
                                             </tr>
                                         @endif

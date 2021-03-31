@@ -11,8 +11,10 @@
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Quản lý người dùng</li>
                     </ol>
-                    <a href="{{route('user.create')}}" class="btn btn-primary addBtn">Thêm người dùng
-                    </a>
+                    @can('user_create')
+                        <a href="{{route('user.create')}}" class="btn btn-primary addBtn">Thêm người dùng
+                        </a>
+                    @endcan
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
@@ -38,7 +40,7 @@
                                                     src="@if($user->image)
                                                     {{asset('backend/images').'/'.$user->image}}
                                                     @else
-                                                    {{asset('backend/images/user/defaultImage.png')}}
+                                                    {{asset('backend/images/user/default.png')}}
                                                     @endif"
                                                     alt="" width="100" height="100"></td>
                                             <td>{{$user->firstname}}</td>
@@ -50,13 +52,17 @@
                                                 @endforeach
                                             </td>
                                             <td class="d-flex">
-                                                <a class="btn btn-primary mr-1"
-                                                   href="{{route('user.edit',$user->id)}}">Sửa</a>
-                                                <form action="{{route('user.destroy',$user->id)}}"
-                                                      method="POST">
-                                                    @csrf
-                                                    <button class="delete btn btn-danger">Xóa</button>
-                                                </form>
+                                                @can('user_edit')
+                                                    <a class="btn btn-primary mr-1"
+                                                       href="{{route('user.edit',$user->id)}}">Sửa</a>
+                                                @endcan
+                                                @can('user_delete')
+                                                    <form action="{{route('user.destroy',$user->id)}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button class="delete btn btn-danger">Xóa</button>
+                                                    </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

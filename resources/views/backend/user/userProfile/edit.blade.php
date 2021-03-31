@@ -19,7 +19,7 @@
                                     @if($user->image)
                                     {{asset('backend/images').'/'.$user->image}}
                                     @else
-                                    {{asset('backend/images/user/defaultImage.png')}}
+                                    {{asset('backend/images/user/default.png')}}
                                     @endif" alt="" width="150"
                                          height="150">
                                     <h5>{{$user->lastname}} {{$user->firstname}}</h5>
@@ -84,7 +84,7 @@
                                                 @if($user->image)
                                                 {{asset('backend/images').'/'.$user->image}}
                                                 @else
-                                                {{asset('backend/images/user/defaultImage.png')}}
+                                                {{asset('backend/images/user/default.png')}}
                                                 @endif" alt="" width="120" height="120">
                                                 <label class="avatarLabel" for="avatar"><i class="fas fa-pen"></i><input
                                                         style="display: none" type="file" id="avatar" class="imagesAvatar"
@@ -193,7 +193,7 @@
 
         $('.avatarDelete').click(function () {
             $('input[name=delete_img]').val('1');
-            $('.imagesForm').attr('src', 'http:adela.test/backend/images/user/defaultImage.png')
+            $('.imagesForm').attr('src', 'http:adela.test/backend/images/user/default.png')
         });
     </script>
 @endsection

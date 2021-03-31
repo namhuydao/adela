@@ -52,4 +52,5 @@ CKEDITOR.replace('content');
 
 $(document).ready(function () {
     $('.userRoleMultiple').select2();
+    $('.sizeMultiple').select2();
 });

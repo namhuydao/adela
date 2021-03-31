@@ -23,7 +23,16 @@
 		container: 'body'
 	});
 
+    $(document).ready(function () {
+        let  $mymodal = $('#mymodal');
+        $('.modalShow').on('click', function (evn) { // this is the "a" tag
+            evn.preventDefault();
 
+            $mymodal.modal('show');
+            let resourceId = $(this).data('item_id'),
+                $pressedButton = $(this);
+        });
+    });
 	/*----------------------------
 	 jQuery MeanMenu
 	------------------------------ */
@@ -296,6 +305,10 @@
 
 	$("#order").click(function (e) {
 		e.preventDefault();
-		window.location = "checkout-success.php";
+		window.location = "checkout-success.blade.php";
 	})
 })(jQuery);
+
+$(document).ready(function () {
+    $('.sizeMultiple').select2();
+});

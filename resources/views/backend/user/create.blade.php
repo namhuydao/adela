@@ -16,7 +16,7 @@
                     <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group position-relative text-center">
-                            <img class="imagesForm" width="100" height="100" src="{{asset('backend/images/user/defaultImage.png')}}"/>
+                            <img class="imagesForm" width="100" height="100" src="{{asset('backend/images/user/default.png')}}"/>
                             <label class="formLabel" for="fileToAddUser"><i class="fas fa-pen"></i><input
                                         style="display: none" type="file" id="fileToAddUser" class="imagesAvatar"
                                         name="fileToUpload"></label>

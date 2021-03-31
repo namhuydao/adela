@@ -33,7 +33,7 @@
     <!-- nivo-slider.css -->
     <link rel="stylesheet" href="{{asset('site/css/nivo-slider.css')}}">
     <!-- style css -->
-    <link rel="stylesheet" href="{{asset('site/css/style.min.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/style.css')}}">
     <!-- responsive css -->
     <link rel="stylesheet" href="{{asset('site/css/responsive.css')}}">
     <!-- modernizr css -->
@@ -72,8 +72,10 @@
 <script src="{{asset('site/js/waypoints.min.js')}}"></script>
 <!-- plugins js -->
 <script src="{{asset('site/js/plugins.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- main js -->
 <script src="{{asset('site/js/main.js')}}"></script>
-</body>
 
+</body>
+@yield('footer_script')
 </html>

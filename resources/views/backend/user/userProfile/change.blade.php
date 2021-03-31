@@ -19,7 +19,7 @@
                                      @if($user->image)
                                     {{asset('backend/images').'/'.$user->image}}
                                     @else
-                                    {{asset('backend/images/user/defaultImage.png')}}
+                                    {{asset('backend/images/user/default.png')}}
                                     @endif" alt="" width="150" height="150">
                                     <h5>{{$user->lastname}} {{$user->firstname}}</h5>
                                 </div>

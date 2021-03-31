@@ -14,6 +14,10 @@ class PermissionGateAndPolicyAccess {
         $this->defineGateUser();
         $this->defineGateRole();
         $this->defineGatePermission();
+        $this->defineGateBrand();
+        $this->defineGateSize();
+        $this->defineGateSetting();
+        $this->defineGateBanner();
     }
 
     public function defineGatePost(){
@@ -70,5 +74,32 @@ class PermissionGateAndPolicyAccess {
         Gate::define('permission_create' , 'App\Policies\PermissionPolicy@create');
         Gate::define('permission_edit' , 'App\Policies\PermissionPolicy@update');
         Gate::define('permission_delete' , 'App\Policies\PermissionPolicy@delete');
+    }
+
+    public function defineGateBrand(){
+        Gate::define('brand_view', 'App\Policies\BrandPolicy@view');
+        Gate::define('brand_create' , 'App\Policies\BrandPolicy@create');
+        Gate::define('brand_edit' , 'App\Policies\BrandPolicy@update');
+        Gate::define('brand_delete' , 'App\Policies\BrandPolicy@delete');
+    }
+    public function defineGateSize(){
+        Gate::define('size_view', 'App\Policies\SizePolicy@view');
+        Gate::define('size_create' , 'App\Policies\SizePolicy@create');
+        Gate::define('size_edit' , 'App\Policies\SizePolicy@update');
+        Gate::define('size_delete' , 'App\Policies\SizePolicy@delete');
+    }
+
+    public function defineGateSetting(){
+        Gate::define('setting_view', 'App\Policies\SettingPolicy@view');
+        Gate::define('setting_create' , 'App\Policies\SettingPolicy@create');
+        Gate::define('setting_edit' , 'App\Policies\SettingPolicy@update');
+        Gate::define('setting_delete' , 'App\Policies\SettingPolicy@delete');
+    }
+
+    public function defineGateBanner(){
+        Gate::define('banner_view', 'App\Policies\BannerPolicy@view');
+        Gate::define('banner_create' , 'App\Policies\BannerPolicy@create');
+        Gate::define('banner_edit' , 'App\Policies\BannerPolicy@update');
+        Gate::define('banner_delete' , 'App\Policies\BannerPolicy@delete');
     }
 }

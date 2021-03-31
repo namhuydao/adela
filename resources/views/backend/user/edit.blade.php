@@ -23,7 +23,7 @@
                             @if($user->image)
                             {{asset('backend/images').'/'.$user->image}}
                             @else
-                            {{asset('backend/images/user/defaultImage.png')}}
+                            {{asset('backend/images/user/default.png')}}
                             @endif"/>
                             <label class="formLabel" for="fileToAddUser"><i class="fas fa-pen"></i><input
                                         style="display: none" type="file" id="fileToAddUser" class="imagesAvatar"

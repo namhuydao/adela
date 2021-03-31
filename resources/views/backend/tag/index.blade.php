@@ -11,8 +11,10 @@
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Quản lý Tag</li>
                     </ol>
-                    <a href="{{route('tag.create')}}" class="btn btn-primary addBtn">Thêm Tag
-                    </a>
+                    @can('tag_create')
+                        <a href="{{route('tag.create')}}" class="btn btn-primary addBtn">Thêm Tag
+                        </a>
+                    @endcan
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
@@ -34,13 +36,17 @@
                                             <td>{{$tag->id}}</td>
                                             <td>{{$tag->name}}</td>
                                             <td class="d-flex">
-                                                <a class="btn btn-primary mr-1"
-                                                   href="{{route('tag.edit',$tag->id)}}">Sửa</a>
-                                                <form action="{{route('tag.destroy',$tag->id)}}"
-                                                      method="POST">
-                                                    @csrf
-                                                    <button class="delete btn btn-danger">Xóa</button>
-                                                </form>
+                                                @can('tag_edit')
+                                                    <a class="btn btn-primary mr-1"
+                                                       href="{{route('tag.edit',$tag->id)}}">Sửa</a>
+                                                @endcan
+                                                @can('tag_delete')
+                                                    <form action="{{route('tag.destroy',$tag->id)}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button class="delete btn btn-danger">Xóa</button>
+                                                    </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend\Product;
 
+use App\Brand;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\ProductImages;
+use App\Size;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -28,10 +30,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-
+        $sizes = Size::all();
+        $brands = Brand::all();
         $tags = Tag::all();
         $html = getProductCategory($parent_id = 0);
-        return view('backend.product.create', compact('html', 'tags'));
+        return view('backend.product.create', compact('html', 'tags', 'brands', 'sizes'));
     }
 
     /**
@@ -61,6 +64,7 @@ class ProductController extends Controller
         $product->seller_id = auth()->user()->id;
         $product->base_price = $request->basePrice;
         $product->discount_price = $request->discountPrice;
+        $product->brand_id = $request->brand;
         $product->category_id = $request->category;
         $product->save();
 
@@ -84,6 +88,7 @@ class ProductController extends Controller
         }
 
         $product->tags()->sync($request->tags);
+        $product->sizes()->sync($request->sizes);
 
         return redirect()->route('product');
     }
@@ -107,10 +112,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $sizes = Size::all();
+        $brands = Brand::all();
         $product = Product::find($id);
         $tags = Tag::all();
         $html = getProductCategory($product->category_id);
-        return view('backend.product.edit', compact('html', 'product', 'tags'));
+        return view('backend.product.edit', compact('html', 'product', 'tags', 'sizes', 'brands'));
 
     }
 
@@ -142,6 +149,7 @@ class ProductController extends Controller
         $product->seller_id = auth()->user()->id;
         $product->base_price = $request->basePrice;
         $product->discount_price = $request->discountPrice;
+        $product->brand_id = $request->brand;
         $product->category_id = $request->category;
         $product->save();
 
@@ -166,7 +174,7 @@ class ProductController extends Controller
         }
 
         $product->tags()->sync($request->tags);
-
+        $product->sizes()->sync($request->sizes);
         return back()->with('success', 'Sửa thành công');
     }
 
@@ -180,7 +188,6 @@ class ProductController extends Controller
     {
         Product::find($id)->tags()->detach();
         Product::destroy($id);
-
         return redirect()->route('product');
     }
 }

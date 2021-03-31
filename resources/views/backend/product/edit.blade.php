@@ -68,6 +68,25 @@
                                    class="form-control" id="productDiscountPriceUpdate">
                         </div>
                         <div class="form-group">
+                            <label>Thương hiệu:</label>
+                            <select class="form-control" name="brand">
+                                @foreach($brands as $brand)
+                                    <option @if($brand->id == $product->brand_id) selected @endif value="{{$brand->id}}">{{$brand->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Size:</label>
+                            <select name="sizes[]" class="form-control sizeMultiple" multiple="multiple">
+                                @foreach($sizes as $size)
+                                    <option
+                                        @if($product->sizes->contains($size)) selected
+                                            @endif
+                                        value="{{$size->id}}">{{$size->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="price_product">Album ảnh (tối đa 6 file)</label>
                             <div class="multi-images">
                                 <input type="hidden" name="delete_img" value="0">

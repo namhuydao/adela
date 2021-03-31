@@ -21,7 +21,7 @@
                aria-haspopup="true" aria-expanded="false"><img style="border-radius: 50%" src="@if(auth()->user()->image)
                 {{asset('backend/images').'/'.auth()->user()->image}}
                 @else
-                {{asset('backend/images/user/defaultImage.png')}}
+                {{asset('backend/images/user/default.png')}}
                 @endif
                     " alt="" width="30" height="30"></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">

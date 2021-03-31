@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('backend/images/favicon.png')}}">
     <title>{{ config('app.name', 'Adela') }}| @yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="{{ asset('backend/css/styles.css') }}" rel="stylesheet">

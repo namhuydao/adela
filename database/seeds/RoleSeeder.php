@@ -12,9 +12,19 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $admin = new Role();
-        $admin->code = 'superadmin';
-        $admin->name = 'super admin';
-        $admin->save();
+        $role = new Role();
+        $role->code = 'superadmin';
+        $role->name = 'super admin';
+        $role->save();
+
+        $role = new Role();
+        $role->code = 'writer';
+        $role->name = 'người viết tin tức';
+        $role->save();
+
+        $role = new Role();
+        $role->code = 'seller';
+        $role->name = 'người bán hàng';
+        $role->save();
     }
 }

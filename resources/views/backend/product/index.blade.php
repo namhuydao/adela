@@ -11,8 +11,10 @@
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Quản lý sản phẩm</li>
                     </ol>
-                    <a href="{{route('product.create')}}" class="btn btn-primary addBtn">Thêm sản phẩm
-                    </a>
+                    @can('product_create')
+                        <a href="{{route('product.create')}}" class="btn btn-primary addBtn">Thêm sản phẩm
+                        </a>
+                    @endcan
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
@@ -27,8 +29,9 @@
                                         <th>Tên</th>
                                         <th>Mô tả</th>
                                         <th>Người bán</th>
-                                        <th>Giá gốc</th>
                                         <th>Giá ưu đãi</th>
+                                        <th>Thương hiệu</th>
+                                        <th>Size</th>
                                         <th>Danh mục</th>
                                         <th>Tags</th>
                                         <th>Hành động</th>
@@ -48,8 +51,11 @@
                                             <td>{{$product->name}}</td>
                                             <td>{{$product->description}}</td>
                                             <td>{{$product->user->firstname . ' ' . $product->user->lastname}}</td>
-                                            <td>{{$product->base_price}}</td>
                                             <td>{{$product->discount_price}}</td>
+                                            <td>{{$product->brand->name}}</td>
+                                            <td>@foreach($product->sizes as $size)
+                                                    {{$size->name}},
+                                                @endforeach</td>
                                             <td>{{$product->category->name}}</td>
                                             <td>
                                                 @foreach($product->tags as $tag)
@@ -57,13 +63,17 @@
                                                 @endforeach
                                             </td>
                                             <td class="d-flex">
-                                                <a class="btn btn-primary mr-1"
-                                                   href="{{route('product.edit',$product->id)}}">Sửa</a>
-                                                <form action="{{route('product.destroy',$product->id)}}"
-                                                      method="POST">
-                                                    @csrf
-                                                    <button class="delete btn btn-danger">Xóa</button>
-                                                </form>
+                                                @can('product_edit', $product->id)
+                                                    <a class="btn btn-primary mr-1"
+                                                       href="{{route('product.edit',$product->id)}}">Sửa</a>
+                                                @endcan
+                                                @can('product_delete',$product->id)
+                                                    <form action="{{route('product.destroy',$product->id)}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button class="delete btn btn-danger">Xóa</button>
+                                                    </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

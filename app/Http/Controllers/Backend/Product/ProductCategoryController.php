@@ -17,7 +17,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $categories = ProductCategory::all();
-        return view('backend.productCategory.index', compact('categories'));
+        return view('backend.product.productCategory.index', compact('categories'));
     }
 
     /**
@@ -28,7 +28,7 @@ class ProductCategoryController extends Controller
     public function create()
     {
         $html = getProductCategory($parent_id = 0);
-        return view('backend.productCategory.create', compact('html'));
+        return view('backend.product.productCategory.create', compact('html'));
     }
 
     /**
@@ -74,7 +74,7 @@ class ProductCategoryController extends Controller
     public function edit($id)
     {
         $category = ProductCategory::find($id);
-        return view('backend.productCategory.edit', compact('category'));
+        return view('backend.product.productCategory.edit', compact('category'));
     }
 
     /**

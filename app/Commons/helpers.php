@@ -35,6 +35,7 @@ function getProductCategory($parent_id): string
     return $recursive->categoriesRecursive($parent_id);
 }
 
+
 function uploadFile($file, $path): string
 {
     $base_folder = 'backend/images';
@@ -59,7 +60,7 @@ function uploadFile($file, $path): string
 
 function saveFile($file, $path)
 {
-    $base_path = public_path() . '/backend/assets/images/';
+    $base_path = public_path() . '/backend/images/';
     $dir_name = $base_path . $path;
     if (!is_dir($dir_name)) {
         // Tạo thư mục của chúng tôi nếu nó không tồn tại
@@ -68,6 +69,6 @@ function saveFile($file, $path)
     $file_name = $file->getClientOriginalName();
     $name = explode('.', $file_name);
     $file_name_insert = str_replace(end($name), '', $file_name) . end($name);
-    $file->move(base_path() . '/public/backend/assets/images/' . $path, $file_name_insert);
+    $file->move(base_path() . '/public/backend/images/' . $path, $file_name_insert);
     return $path . '/' . $file_name_insert;
 }

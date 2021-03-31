@@ -17,7 +17,7 @@ class PostCategoryController extends Controller
     public function index()
     {
         $categories = PostCategory::all();
-        return view('backend.postCategory.index', compact('categories'));
+        return view('backend.post.postCategory.index', compact('categories'));
     }
 
     /**
@@ -28,7 +28,7 @@ class PostCategoryController extends Controller
     public function create()
     {
         $html = getPostCategory($parent_id = 0);
-        return view('backend.postCategory.create', compact('html'));
+        return view('backend.post.postCategory.create', compact('html'));
     }
 
     /**
@@ -74,7 +74,7 @@ class PostCategoryController extends Controller
     public function edit($id)
     {
         $category = PostCategory::find($id);
-        return view('backend.postCategory.edit', compact('category'));
+        return view('backend.post.postCategory.edit', compact('category'));
     }
 
     /**

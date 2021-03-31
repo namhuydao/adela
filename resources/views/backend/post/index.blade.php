@@ -11,8 +11,10 @@
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Quản lý tin tức</li>
                     </ol>
-                    <a href="{{route('post.create')}}" class="btn btn-primary addBtn">Thêm tin tức
-                    </a>
+                    @can('post_create')
+                        <a href="{{route('post.create')}}" class="btn btn-primary addBtn">Thêm tin tức
+                        </a>
+                    @endcan
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
@@ -53,16 +55,18 @@
                                                 @endforeach
                                             </td>
                                             <td class="d-flex">
-                                                <a class="btn btn-primary mr-1"
-                                                   href="{{route('post.edit', $post->id)}}">Sửa</a>
-                                                <form action="{{route('post.destroy',$post->id)}}"
-                                                      method="POST">
-                                                    @csrf
-                                                    <button class="delete btn btn-danger">Xóa</button>
-                                                </form>
-
+                                                @can('post_edit', $post->id)
+                                                    <a class="btn btn-primary mr-1"
+                                                       href="{{route('post.edit', $post->id)}}">Sửa</a>
+                                                @endcan
+                                                @can('post_delete', $post->id)
+                                                    <form action="{{route('post.destroy',$post->id)}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button class="delete btn btn-danger">Xóa</button>
+                                                    </form>
+                                                @endcan
                                             </td>
-
                                         </tr>
                                     @endforeach
                                     </tbody>

@@ -51,7 +51,7 @@
                                     <label style="margin-top: 30px">
                                         <input
                                             style='margin-right: 5px;' class="perAll"
-                                            type='checkbox'> Chọn tất cả
+                                            type='checkbox'> Check all
                                     </label>
                                     @foreach($parentPermissions as $parentPermission)
                                         <div class="parentCheck">

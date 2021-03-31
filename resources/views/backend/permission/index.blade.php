@@ -11,8 +11,10 @@
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Quản lý quyền</li>
                     </ol>
-                    <a href="{{route('permission.create')}}" class="btn btn-primary addBtn">Thêm quyền
-                    </a>
+                    @can('permission_create')
+                        <a href="{{route('permission.create')}}" class="btn btn-primary addBtn">Thêm quyền
+                        </a>
+                    @endcan
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
@@ -36,13 +38,17 @@
                                             <td>{{$permission->code}}</td>
                                             <td>{{$permission->name}}</td>
                                             <td class="d-flex">
-                                                <a class="btn btn-primary mr-1"
-                                                   href="{{route('permission.edit',$permission->id)}}">Sửa</a>
-                                                <form action="{{route('permission.destroy',$permission->id)}}"
-                                                      method="POST">
-                                                    @csrf
-                                                    <button class="delete btn btn-danger">Xóa</button>
-                                                </form>
+                                                @can('permission_edit')
+                                                    <a class="btn btn-primary mr-1"
+                                                       href="{{route('permission.edit',$permission->id)}}">Sửa</a>
+                                                @endcan
+                                                @can('permission_delete')
+                                                    <form action="{{route('permission.destroy',$permission->id)}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        <button class="delete btn btn-danger">Xóa</button>
+                                                    </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach
