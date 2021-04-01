@@ -37,12 +37,6 @@ class PermissionController extends Controller
         return redirect()->route('permission');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $permission = Permission::find($id);
@@ -66,12 +60,6 @@ class PermissionController extends Controller
         return back()->with('success', 'Sửa thành công');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Permission::destroy($id);

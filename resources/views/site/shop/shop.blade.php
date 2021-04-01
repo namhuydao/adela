@@ -115,7 +115,7 @@
                                             <!-- product-wrapper start -->
                                             <div class="product-wrapper mb-40">
                                                 <div class="product-img">
-                                                    <a href="product-details.blade.php">
+                                                    <a href="{{route('shopDetails', $product->id)}}">
                                                         <img src="{{asset('backend/images').'/'.$product->avatar}}"
                                                              alt="product" class="primary">
                                                         <img src="{{asset('backend/images').'/'.$product->avatar}}"
@@ -142,7 +142,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <h2><a href="product-details.blade.php">{{$product->name}}</a></h2>
+                                                    <h2><a href="{{route('shopDetails', $product->id)}}">{{$product->name}}</a></h2>
                                                     <div class="price">
                                                         <ul>
                                                             @if($product->discount_price)
