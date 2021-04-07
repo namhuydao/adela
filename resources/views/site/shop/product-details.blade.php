@@ -11,7 +11,7 @@
                         <div class="breadcrumb-content text-center">
                             <h2>Chi Tiết Sản Phẩm</h2>
                             <ul>
-                                <li><a href="../index.php">Trang Chủ /</a></li>
+                                <li><a href="{{route('home')}}">Trang Chủ /</a></li>
                                 <li class="active"><a href="#">Chi Tiết Sản Phẩm</a></li>
                             </ul>
                         </div>
@@ -65,9 +65,9 @@
                                 <div class="price">
                                     <ul>
                                         <li class="new-price">@if($product->discount_price)
-                                                {{$product->discount_price}}đ
+                                                {{number_format($product->discount_price)}}đ
                                             @else
-                                                {{$product->base_price}}đ
+                                                {{number_format($product->base_price)}}đ
                                             @endif
                                         </li>
                                     </ul>
@@ -186,7 +186,7 @@
                                     <!-- product-wrapper start -->
                                     <div class="product-wrapper">
                                         <div class="product-img">
-                                            <a href="#">
+                                            <a href="{{route('shopDetails', $product->id)}}">
                                                 <img src="{{asset('backend/images').'/'.$product->avatar}}"
                                                      alt="product" class="primary"/>
                                                 <img src="{{asset('backend/images').'/'.$product->avatar}}"
@@ -211,14 +211,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h2><a href="product-details.blade.php">{{$product->name}}</a>
+                                            <h2><a href="{{route('shopDetails', $product->id)}}">{{$product->name}}</a>
                                             </h2>
                                             <div class="price">
                                                 <ul>
                                                     <li class="new-price">@if($product->discount_price)
-                                                            {{$product->discount_price}}đ
+                                                            {{number_format($product->discount_price)}}đ
                                                         @else
-                                                            {{$product->base_price}}đ
+                                                            {{number_format($product->base_price)}}đ
                                                         @endif</li>
                                                 </ul>
                                             </div>

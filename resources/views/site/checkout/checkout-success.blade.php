@@ -29,7 +29,7 @@
                     <div class="col-12">
                         <h1>BẠN ĐÃ ĐẶT HÀNG THÀNH CÔNG!</h1>
                         <p>Đơn hàng của bạn đã được xử lý thành công!</p>
-                        <p>Nếu có bất kỳ câu hỏi nào, hãy gửi cho <a href="#" style="color: #292929">cửa hàng</a></p>
+                        <p>Nếu có bất kỳ câu hỏi nào, hãy gửi cho <a href="{{route('home')}}" style="color: #292929">cửa hàng</a></p>
                         <p>Cám ơn bạn đã mua sắm tại cửa hàng chúng tôi!</p>
                         <div class="buttons">
                             <div class="pull-right">

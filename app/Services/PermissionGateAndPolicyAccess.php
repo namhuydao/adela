@@ -18,6 +18,7 @@ class PermissionGateAndPolicyAccess {
         $this->defineGateSize();
         $this->defineGateSetting();
         $this->defineGateBanner();
+        $this->defineGateBill();
     }
 
     public function defineGatePost(){
@@ -101,5 +102,12 @@ class PermissionGateAndPolicyAccess {
         Gate::define('banner_create' , 'App\Policies\BannerPolicy@create');
         Gate::define('banner_edit' , 'App\Policies\BannerPolicy@update');
         Gate::define('banner_delete' , 'App\Policies\BannerPolicy@delete');
+    }
+
+    public function defineGateBill(){
+        Gate::define('bill_view', 'App\Policies\BillPolicy@view');
+        Gate::define('bill_create' , 'App\Policies\BillPolicy@create');
+        Gate::define('bill_edit' , 'App\Policies\BillPolicy@update');
+        Gate::define('bill_delete' , 'App\Policies\BillPolicy@delete');
     }
 }

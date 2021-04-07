@@ -38,4 +38,11 @@ class ShopController extends Controller
         Cart::add($id, $product->name, $request->amount, $price, 0 , ['size' => $request->size]);
         return redirect()->route('shopDetails',$product->id);
     }
+
+    public function ajaxViewProduct(Request $request) {
+        $product_id = $request->product_id;
+        $product = Product::find($product_id);
+        $tags = Tag::all();
+        return view('site.shop.popup.product_info', compact('product', 'tags'));
+    }
 }

@@ -19,7 +19,7 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'guest'], function (){
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
     //Dashboard
-    Route::get('dashboard', 'Backend\DashboardController@index')->name('dashboard');
+    Route::get('', 'Backend\DashboardController@index')->name('dashboard');
 
     //Banner
     Route::group(['prefix' => 'banner'], function (){
@@ -130,6 +130,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
         Route::post('/update/{Setting}', 'Backend\SettingController@update')->name('setting.update');
         Route::post('/delete/{Setting}', 'Backend\SettingController@destroy')->name('setting.destroy')->middleware('can:setting_delete');
     });
+
+    //Bill
+    Route::group(['prefix' => 'bill'], function (){
+        Route::get('/', 'Backend\BillController@index')->name('bill')->middleware('can:bill_view');
+        Route::get('/create', 'Backend\BillController@create')->name('bill.create')->middleware('can:bill_create');
+        Route::post('/store', 'Backend\BillController@store')->name('bill.store');
+        Route::get('/edit/{Bill}', 'Backend\BillController@edit')->name('bill.edit')->middleware('can:bill_edit');
+        Route::post('/update/{Bill}', 'Backend\BillController@update')->name('bill.update');
+        Route::post('/delete/{Bill}', 'Backend\BillController@destroy')->name('bill.destroy')->middleware('can:bill_delete');
+    });
 });
 Route::group(['prefix' => 'admin'], function (){
     //Forget Password
@@ -142,7 +152,7 @@ Route::group(['prefix' => 'admin'], function (){
 });
 
 Route::group(['prefix' => '/'], function (){
-    Route::get('home','Site\HomeController@index')->name('home');
+    Route::get('','Site\HomeController@index')->name('home');
     Route::get('blog','Site\BlogController@index')->name('blog');
     Route::get('blog/{id}','Site\BlogController@show')->name('blogDetails');
     Route::get('shop','Site\ShopController@index')->name('shop');
@@ -154,5 +164,8 @@ Route::group(['prefix' => '/'], function (){
     Route::get('cartUpdate/{id}','Site\CartController@updateItem')->name('cartUpdate');
     Route::get('wishlist','Site\WishlistController@index')->name('wishlist');
     Route::get('checkout','Site\CheckoutController@index')->name('checkout');
+    Route::post('checkout','Site\CheckoutController@checkout');
     Route::get('checkoutSuccess','Site\CheckoutController@success')->name('checkout-success');
+
+    Route::get('/ajax/view-product', 'Site\ShopController@ajaxViewProduct')->name('productPopup');
 });

@@ -303,7 +303,7 @@
 
 	/* checkout success*/
 
-	$("#order").click(function (e) {
+	$("#bill").click(function (e) {
 		e.preventDefault();
 		window.location = "checkout-success.blade.php";
 	})

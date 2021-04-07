@@ -3072,7 +3072,6 @@ p.lost-password a:hover {
   margin-left: 15px;
 }
 .payment-accordion .panel-heading a::before {
-  content: "";
   cursor: pointer;
   display: block;
   font-family: fontawesome;
@@ -3081,9 +3080,7 @@ p.lost-password a:hover {
   position: absolute;
   top: 0px;
 }
-.payment-accordion .panel-heading a.collapsed::before {
-  content: " ";
-}
+
 .payment-accordion .panel-group .panel {
   margin-bottom: 20px;
 }

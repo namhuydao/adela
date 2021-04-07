@@ -34,7 +34,7 @@
                                 <h2>{{$blog->title}}</h2>
                             </div>
                             <div class="blog-info">
-                                {{$blog->content}}
+                                {!! $blog->content !!}
                                 <div class="user-info">
                                     <div class="row">
                                         <div class="col-12 col-md-6">

@@ -117,7 +117,7 @@
                         </div>
                     @endcan
                 @endcanany
-                @canany(['role_view', 'permission_view', 'setting_view'])
+                @canany(['role_view', 'permission_view', 'setting_view','bill_view'])
                     <div class="sb-sidenav-menu-heading">Admin</div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts5"
                        aria-expanded="false" aria-controls="collapseLayouts">
@@ -146,6 +146,13 @@
                             <a class="nav-link" href="{{route('setting')}}">
                                 <div class="sb-nav-link-icon"><i class="far fa-user-tie"></i></div>
                                 Settings</a>
+                        </div>
+                    @endcan
+                    @can('bill_view')
+                        <div aria-labelledby="headingOne">
+                            <a class="nav-link" href="{{route('bill')}}">
+                                <div class="sb-nav-link-icon"><i class="far fa-user-tie"></i></div>
+                                Đơn hàng</a>
                         </div>
                     @endcan
                 @endcanany

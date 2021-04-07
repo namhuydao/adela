@@ -51,7 +51,7 @@
                                             <td>{{$product->name}}</td>
                                             <td>{{$product->description}}</td>
                                             <td>{{$product->user->firstname . ' ' . $product->user->lastname}}</td>
-                                            <td>{{$product->discount_price}}</td>
+                                            <td>{{number_format($product->discount_price)}}đ</td>
                                             <td>{{$product->brand->name}}</td>
                                             <td>@foreach($product->sizes as $size)
                                                     {{$size->name}},
