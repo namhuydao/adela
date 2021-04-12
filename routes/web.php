@@ -20,6 +20,15 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'guest'], function (){
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
     //Dashboard
     Route::get('', 'Backend\DashboardController@index')->name('dashboard');
+    //Menu
+    Route::group(['prefix' => 'menu'], function (){
+        Route::get('/', 'Backend\MenuController@index')->name('menu')->middleware('can:menu_view');
+        Route::get('/create', 'Backend\MenuController@create')->name('menu.create')->middleware('can:menu_create');
+        Route::post('/store', 'Backend\MenuController@store')->name('menu.store');
+        Route::get('/edit/{Menu}', 'Backend\MenuController@edit')->name('menu.edit')->middleware('can:menu_edit');
+        Route::post('/update/{Menu}', 'Backend\MenuController@update')->name('menu.update');
+        Route::post('/delete/{Menu}', 'Backend\MenuController@destroy')->name('menu.destroy')->middleware('can:menu_delete');
+    });
 
     //Banner
     Route::group(['prefix' => 'banner'], function (){
@@ -152,20 +161,21 @@ Route::group(['prefix' => 'admin'], function (){
 });
 
 Route::group(['prefix' => '/'], function (){
+
     Route::get('','Site\HomeController@index')->name('home');
-    Route::get('blog','Site\BlogController@index')->name('blog');
-    Route::get('blog/{id}','Site\BlogController@show')->name('blogDetails');
-    Route::get('shop','Site\ShopController@index')->name('shop');
-    Route::get('shop/details/{Product}','Site\ShopController@show')->name('shopDetails');
-    Route::get('shop/addCart/{id}','Site\ShopController@addCart')->name('addCart');
-    Route::get('contact','Site\ContactController@index')->name('contact');
+    Route::get('tin-tuc','Site\BlogController@index')->name('blog');
+    Route::get('tin-tuc/{id}','Site\BlogController@show')->name('blogDetails');
+    Route::get('lien-he','Site\ContactController@index')->name('contact');
     Route::get('cart','Site\CartController@cart')->name('cart');
     Route::get('cart/{id}','Site\CartController@deleteItem')->name('cartDelete');
     Route::get('cartUpdate/{id}','Site\CartController@updateItem')->name('cartUpdate');
-    Route::get('wishlist','Site\WishlistController@index')->name('wishlist');
     Route::get('checkout','Site\CheckoutController@index')->name('checkout');
     Route::post('checkout','Site\CheckoutController@checkout');
     Route::get('checkoutSuccess','Site\CheckoutController@success')->name('checkout-success');
 
     Route::get('/ajax/view-product', 'Site\ShopController@ajaxViewProduct')->name('productPopup');
+
+    Route::get('{slug}','Site\ShopController@list')->name('shop.list');
+    Route::get('shop/details/{Product}','Site\ShopController@show')->name('shopDetails');
+    Route::get('shop/addCart/{id}','Site\ShopController@addCart')->name('addCart');
 });

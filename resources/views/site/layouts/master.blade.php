@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="{{asset('site/css/responsive.css')}}">
     <!-- modernizr css -->
     <script src="{{asset('site/js/vendor/modernizr-2.8.3.min.js')}}"></script>
+    <!-- jquery latest version -->
+    <script src="{{asset('site/js/vendor/jquery-1.12.0.min.js')}}"></script>
 </head>
 
 @include('site.layouts.nav')
@@ -46,8 +48,7 @@
 @include('site.layouts.footer')
 
 <!-- all js here -->
-<!-- jquery latest version -->
-<script src="{{asset('site/js/vendor/jquery-1.12.0.min.js')}}"></script>
+
 <!-- bootstrap js -->
 <script src="{{asset('site/js/bootstrap.min.js')}}"></script>
 <!-- owl.carousel js -->

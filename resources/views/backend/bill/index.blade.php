@@ -50,18 +50,20 @@
                                                                 {{$product->name}},
                                                         @endif
                                                     @endforeach
-                                                @endforeach</td>
+                                                @endforeach
+                                            </td>
                                             <td>{{$bill->customer->phone}}</td>
                                             <td>{{$bill->customer->email}}</td>
                                             <td>{{$bill->customer->city}}</td>
                                             <td>{{$bill->customer->district}}</td>
                                             <td>{{$bill->receive_date}}</td>
                                             <td>{{$bill->status}}</td>
-                                            <td>@php($total = 0)
+                                            <td>
+                                                @php($total = 0)
                                                 @foreach($bill->billItems as $bill_item)
                                                    @php($total += $bill_item->total_price)
                                                 @endforeach
-                                            {{number_format($total)}}đ
+                                                {{number_format($total)}}đ
                                             </td>
                                             <td>{{$bill->note}}</td>
                                             <td>{{$bill->payment_type}}</td>

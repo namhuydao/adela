@@ -2,6 +2,7 @@
 
 use App\Components\CategoriesRecursive;
 use App\Components\PermissionRecursive;
+use App\Menu;
 use App\Permission;
 use App\PostCategory;
 use App\ProductCategory;
@@ -17,6 +18,13 @@ function test_input($data): string
 function getPostCategory($parent_id): string
 {
     $data = PostCategory::all();
+    $recursive = new CategoriesRecursive($data);
+    return $recursive->categoriesRecursive($parent_id);
+}
+
+function getMenu($parent_id): string
+{
+    $data = Menu::all();
     $recursive = new CategoriesRecursive($data);
     return $recursive->categoriesRecursive($parent_id);
 }

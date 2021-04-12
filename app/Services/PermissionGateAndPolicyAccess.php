@@ -19,6 +19,7 @@ class PermissionGateAndPolicyAccess {
         $this->defineGateSetting();
         $this->defineGateBanner();
         $this->defineGateBill();
+        $this->defineGateMenu();
     }
 
     public function defineGatePost(){
@@ -109,5 +110,12 @@ class PermissionGateAndPolicyAccess {
         Gate::define('bill_create' , 'App\Policies\BillPolicy@create');
         Gate::define('bill_edit' , 'App\Policies\BillPolicy@update');
         Gate::define('bill_delete' , 'App\Policies\BillPolicy@delete');
+    }
+
+    public function defineGateMenu(){
+        Gate::define('menu_view', 'App\Policies\MenuPolicy@view');
+        Gate::define('menu_create' , 'App\Policies\MenuPolicy@create');
+        Gate::define('menu_edit' , 'App\Policies\MenuPolicy@update');
+        Gate::define('menu_delete' , 'App\Policies\MenuPolicy@delete');
     }
 }

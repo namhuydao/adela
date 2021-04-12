@@ -11,7 +11,7 @@
                         <div class="breadcrumb-content text-center">
                             <h2>Liên Hệ</h2>
                             <ul>
-                                <li><a href="index.blade.php">Trang Chủ /</a></li>
+                                <li><a href="{{route('home')}}">Trang Chủ /</a></li>
                                 <li class="active"><a href="#">Liên Hệ</a></li>
                             </ul>
                         </div>

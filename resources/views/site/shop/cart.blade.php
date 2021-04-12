@@ -89,7 +89,7 @@
                         <div class="col-12 col-md-6 col-lg-7">
                             <div class="buttons-cart mb-30 mt-3">
                                 <ul>
-                                    <li><a href="{{route('shop')}}">tiếp tục mua sắm</a></li>
+                                    <li><a href="{{URL::to('nam')}}">tiếp tục mua sắm</a></li>
                                 </ul>
                             </div>
                             <div class="coupon">

@@ -23,20 +23,30 @@
                             </nav>
                         </div>
                     @endcan
-                    @can('banner_view')
+                    @canany('banner_view','menu_view')
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts7"
                            aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Banner
+                            Giao diện
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts7" aria-labelledby="headingOne"
-                             data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{route('banner')}}">Quản lý Banner</a>
-                            </nav>
-                        </div>
-                    @endcan
+                        @can('banner_view')
+                            <div class="collapse" id="collapseLayouts7" aria-labelledby="headingOne"
+                                 data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{route('banner')}}">Quản lý Banner</a>
+                                </nav>
+                            </div>
+                        @endcan
+                        @can('menu_view')
+                            <div class="collapse" id="collapseLayouts7" aria-labelledby="headingOne"
+                                 data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{route('menu')}}">Quản lý Menu</a>
+                                </nav>
+                            </div>
+                        @endcan
+                    @endcanany
                     @canany(['post_view', 'postCategory_view'])
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2"
                            aria-expanded="false" aria-controls="collapseLayouts">

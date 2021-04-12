@@ -22,7 +22,7 @@
                                     <h2 class="wow fadeInRight" data-wow-delay=".7s">{{$banner->subtitle}}</h2>
                                     <h1 class="wow fadeInRight" data-wow-delay=".9s">{{$banner->title}}</h1>
                                     <p class="wow fadeInLeft" data-wow-delay="1.3s">{{$banner->description}}</p>
-                                    <a href="{{route('shop')}}" class=" wow bounceInRight" data-wow-delay="1.5s">xem
+                                    <a href="{{URL::to('nam')}}" class=" wow bounceInRight" data-wow-delay="1.5s">xem
                                         thêm</a>
                                 </div>
                             </div><!-- col -->

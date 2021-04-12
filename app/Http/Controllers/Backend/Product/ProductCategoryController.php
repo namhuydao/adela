@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductCategoryController extends Controller
 {
@@ -34,6 +35,7 @@ class ProductCategoryController extends Controller
         $productCategory = new ProductCategory();
         $productCategory->name = $request->name;
         $productCategory->parent_id = $request->categories;
+        $productCategory->slug = Str::slug($productCategory->name, '-');
         $productCategory->save();
 
         return redirect()->route('productCategory');
@@ -61,6 +63,7 @@ class ProductCategoryController extends Controller
 
         $productCategory = ProductCategory::find($id);
         $productCategory->name = $request->name;
+        $productCategory->slug = Str::slug($productCategory->name, '-');
         $productCategory->save();
 
         return back()->with('success', 'Sửa thành công');

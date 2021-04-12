@@ -14,7 +14,7 @@
                         <div class="breadcrumb-content text-center">
                             <h2>Đăng Nhập</h2>
                             <ul>
-                                <li><a href="../index.php">Trang Chủ /</a></li>
+                                <li><a href="{{route('home')}}">Trang Chủ /</a></li>
                                 <li class="active"><a href="#">Đăng Nhập</a></li>
                             </ul>
                         </div>
