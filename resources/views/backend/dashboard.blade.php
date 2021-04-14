@@ -84,12 +84,12 @@
                             data,
                             options: {}
                         };
-                            // === include 'setup' then 'config' above ===
+                        // === include 'setup' then 'config' above ===
 
-                            var myChart = new Chart(
+                        var myChart = new Chart(
                             document.getElementById('myChart'),
                             config
-                            );
+                        );
                     </script>
                     <div class="card mb-4">
                         <div class="card-header">
@@ -112,27 +112,25 @@
                                     </thead>
                                     <tbody>
                                     @foreach($products as $key => $product)
-                                        @if(auth()->user()->id == $product->user->id)
-                                            <tr>
-                                                <td class="text-center"><img
-                                                        src="@if($product->avatar)
-                                                        {{asset('backend/images').'/'.$product->avatar}}
-                                                        @else
-                                                        {{asset('backend/images/product/default.png')}}
-                                                        @endif"
-                                                        alt="" width="100" height="100"></td>
-                                                <td>{{$product->name}}</td>
-                                                <td>{{$product->description}}</td>
-                                                <td>{{$product->base_price}}</td>
-                                                <td>{{$product->discount_price}}</td>
-                                                <td>{{$product->category->name}}</td>
-                                                <td>
-                                                    @foreach($product->tags as $tag)
-                                                        {{$tag->name}},
-                                                    @endforeach
-                                                </td>
-                                            </tr>
-                                        @endif
+                                        <tr>
+                                            <td class="text-center"><img
+                                                    src="@if($product->avatar)
+                                                    {{asset('backend/images').'/'.$product->avatar}}
+                                                    @else
+                                                    {{asset('backend/images/product/default.png')}}
+                                                    @endif"
+                                                    alt="" width="100" height="100"></td>
+                                            <td>{{$product->name}}</td>
+                                            <td>{{$product->description}}</td>
+                                            <td>{{$product->base_price}}</td>
+                                            <td>{{$product->discount_price}}</td>
+                                            <td>{{$product->category->name}}</td>
+                                            <td>
+                                                @foreach($product->tags as $tag)
+                                                    {{$tag->name}},
+                                                @endforeach
+                                            </td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
