@@ -149,6 +149,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
         Route::post('/update/{Bill}', 'Backend\BillController@update')->name('bill.update');
         Route::post('/delete/{Bill}', 'Backend\BillController@destroy')->name('bill.destroy')->middleware('can:bill_delete');
     });
+
+    //Bill
+    Route::group(['prefix' => 'billItem'], function (){
+        Route::get('/edit/{BillItem}', 'Backend\BillItemController@edit')->name('billItem.edit');
+        Route::post('/update/{BillItem}', 'Backend\BillItemController@update')->name('billItem.update');
+        Route::get('/delete/{BillItem}', 'Backend\BillItemController@destroy')->name('billItem.destroy')->middleware('can:bill_delete');
+    });
+
+    Route::get('invoice/{Bill}','Backend\BillController@invoice')->name('invoice');
 });
 Route::group(['prefix' => 'admin'], function (){
     //Forget Password
@@ -163,10 +172,13 @@ Route::group(['prefix' => 'admin'], function (){
 Route::group(['prefix' => '/'], function (){
 
     Route::get('','Site\HomeController@index')->name('home');
+    Route::post('newsletter','Site\HomeController@newsletter')->name('newsletter');
     Route::get('tin-tuc','Site\BlogController@index')->name('blog');
     Route::get('tin-tuc/{id}','Site\BlogController@show')->name('blogDetails');
     Route::get('lien-he','Site\ContactController@index')->name('contact');
     Route::get('cart','Site\CartController@cart')->name('cart');
+    Route::get('shop/details/{Product}','Site\ShopController@show')->name('shopDetails');
+    Route::get('shop/addCart/{id}','Site\ShopController@addCart')->name('addCart');
     Route::get('cart/{id}','Site\CartController@deleteItem')->name('cartDelete');
     Route::get('cartUpdate/{id}','Site\CartController@updateItem')->name('cartUpdate');
     Route::get('checkout','Site\CheckoutController@index')->name('checkout');
@@ -176,6 +188,5 @@ Route::group(['prefix' => '/'], function (){
     Route::get('/ajax/view-product', 'Site\ShopController@ajaxViewProduct')->name('productPopup');
 
     Route::get('{slug}','Site\ShopController@list')->name('shop.list');
-    Route::get('shop/details/{Product}','Site\ShopController@show')->name('shopDetails');
-    Route::get('shop/addCart/{id}','Site\ShopController@addCart')->name('addCart');
+
 });

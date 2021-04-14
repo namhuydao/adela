@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -22,41 +23,33 @@ class CheckoutController extends Controller
     {
         $totalPrice = (float) str_replace(',', '', Cart::subtotal());
         $products = Cart::content();
-        $request->validate([
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
-            'email' => 'required|email|unique:users',
-            'home_number' => 'required',
-            'ward' => 'required',
-            'district' => 'required',
-            'city' => 'required',
-            'phone' => 'required',
-        ], [
-            'firstname.required' => 'Không được để trống',
-            'lastname.required' => 'Không được để trống',
-            'email.required' => 'Không được để trống',
-            'ward.required' => 'Không được để trống',
-            'district.required' => 'Không được để trống',
-            'city.required' => 'Không được để trống',
-            'phone.required' => 'Không được để trống',
-            'email.email' => 'Email không đúng định dạng',
-            'email.unique' => 'Email đã tồn tại'
-        ]);
 
-        $customer = new Customer();
-        $customer->firstname = $request->firstname;
-        $customer->lastname = $request->lastname;
-        $customer->email = $request->email;
-        $customer->home_number = $request->home_number;
-        $customer->ward = $request->ward;
-        $customer->district = $request->district;
-        $customer->city = $request->city;
-        $customer->phone = $request->phone;
-        $customer->save();
+        $buyer = new Customer();
+        $buyer->firstname = $request->buyer_firstname;
+        $buyer->lastname = $request->buyer_lastname;
+        $buyer->email = $request->buyer_email;
+        $buyer->home_number = $request->buyer_home_number;
+        $buyer->ward = $request->buyer_ward;
+        $buyer->district = $request->buyer_district;
+        $buyer->city = $request->buyer_city;
+        $buyer->phone = $request->buyer_phone;
+        $buyer->save();
 
+        $receiver = new Customer();
+        if ($request->has('other_receiver')){
+            $receiver->firstname = $request->receiver_firstname;
+            $receiver->lastname = $request->receiver_lastname;
+            $receiver->email = $request->receiver_email;
+            $receiver->home_number = $request->receiver_home_number;
+            $receiver->ward = $request->receiver_ward;
+            $receiver->district = $request->receiver_district;
+            $receiver->city = $request->receiver_city;
+            $receiver->phone = $request->receiver_phone;
+            $receiver->save();
+        }
         $bill = new Bill();
-        $bill->receiver_id = $customer->id;
-        $bill->buyer_id = $customer->id;
+        $bill->receiver_id = $receiver->id ? : $buyer->id;
+        $bill->buyer_id = $buyer->id;
         $bill->price = $totalPrice;
         $bill->note = $request->note;
         $bill->status = 0;
@@ -74,7 +67,7 @@ class CheckoutController extends Controller
             $billItem->size = $product->options->size;
             $billItem->save();
         }
-
+        Cart::destroy();
         return redirect()->route('checkout-success');
     }
     public function success()

@@ -11,10 +11,6 @@
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Quản lý đơn hàng</li>
                     </ol>
-                    @can('bill_create')
-                        <a href="{{route('bill.create')}}" class="btn btn-primary addBtn">Thêm đơn hàng
-                        </a>
-                    @endcan
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
@@ -57,7 +53,19 @@
                                             <td>{{$bill->customer->city}}</td>
                                             <td>{{$bill->customer->district}}</td>
                                             <td>{{$bill->receive_date}}</td>
-                                            <td>{{$bill->status}}</td>
+                                            <td>
+                                                @switch($bill->status)
+                                                    @case(0)
+                                                    Pending
+                                                    @break
+                                                    @case(1)
+                                                    Processing
+                                                    @break
+                                                    @case(2)
+                                                    Done
+                                                    @break
+                                                @endswitch
+                                            </td>
                                             <td>
                                                 @php($total = 0)
                                                 @foreach($bill->billItems as $bill_item)
@@ -66,7 +74,18 @@
                                                 {{number_format($total)}}đ
                                             </td>
                                             <td>{{$bill->note}}</td>
-                                            <td>{{$bill->payment_type}}</td>
+                                            <td>
+                                                @switch($bill->payment_type)
+                                                    @case(1)
+                                                    Thanh toán trực tiếp
+                                                    @break
+                                                    @case(2)
+                                                    Chuyển khoản
+                                                    @break
+                                                    @case(3)
+                                                    Thanh toán online
+                                                    @break
+                                                @endswitch</td>
                                             <td class="d-flex">
                                                 @can('bill_edit')
                                                     <a class="btn btn-primary mr-1"

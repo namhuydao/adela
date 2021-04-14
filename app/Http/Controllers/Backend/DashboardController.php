@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\BillItem;
 use App\Http\Controllers\Controller;
 use App\Product;
-use App\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $item_arr = [];
+        foreach (BillItem::all() as $billItem){
+            if (array_key_exists($billItem->product_id, $item_arr)){
+                $item_arr[$billItem->product_id] += $billItem->quantity;
+            }else{
+                $item_arr[$billItem->product_id] = $billItem->quantity;
+            }
+        }
+        arsort($item_arr);
+        $product_arr = [];
+        foreach ($item_arr as $key => $value){
+            $product_arr[] = $key;
+        }
+        $tempStr = implode(',', $product_arr);
+        $products = Product::whereIn('id', $product_arr)->orderByRaw(DB::raw("FIELD(id, $tempStr)"))->limit(3)->get();
         return view('backend/dashboard', compact('products'));
     }
 }

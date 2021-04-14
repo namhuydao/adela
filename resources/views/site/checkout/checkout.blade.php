@@ -12,7 +12,7 @@
                             <h2>Thanh Toán</h2>
                             <ul>
                                 <li><a href="{{route('dashboard')}}">Trang Chủ /</a></li>
-                                <li><a href="{{route('shop')}}">Giỏ Hàng /</a></li>
+                                <li><a href="{{URL::to('nam')}}">Giỏ Hàng /</a></li>
                                 <li class="active"><a href="#">Thanh Toán</a></li>
                             </ul>
                         </div>
@@ -73,49 +73,49 @@
                                         <div class="col-12 col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Họ <span class="required">*</span></label>
-                                                <input type="text" placeholder="" name="lastname">
+                                                <input type="text" placeholder="" name="buyer_lastname">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Tên <span class="required">*</span></label>
-                                                <input type="text" placeholder="" name="firstname">
+                                                <input type="text" placeholder="" name="buyer_firstname">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="checkout-form-list">
                                                 <label>Địa Chỉ <span class="required">*</span></label>
-                                                <input type="text" placeholder="Số nhà - Phố" name="home_number">
+                                                <input type="text" placeholder="Số nhà - Phố" name="buyer_home_number">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Xã/ Phường <span class="required">*</span></label>
-                                                <input type="text" name="ward">
+                                                <input type="text" name="buyer_ward">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Quận/ Huyện <span class="required">*</span></label>
-                                                <input type="text" placeholder="" name="district">
+                                                <input type="text" placeholder="" name="buyer_district">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="checkout-form-list">
                                                 <label>Tỉnh / Thành Phố <span class="required">*</span></label>
-                                                <input type="text" name="city">
+                                                <input type="text" name="buyer_city">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Điện Thoại <span class="required">*</span></label>
-                                                <input type="text" name="phone">
+                                                <input type="text" name="buyer_phone">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Địa Chỉ Email <span class="required">*</span></label>
-                                                <input type="email" placeholder="" name="email">
+                                                <input type="email" placeholder="" name="buyer_email">
                                             </div>
                                         </div>
 
@@ -139,56 +139,56 @@
                                         <div class="ship-different-title">
                                             <h3>
                                                 <label>Nhận Hàng Tại Địa Chỉ Khác?</label>
-                                                <input type="checkbox" id="ship-box">
+                                                <input type="checkbox" id="ship-box" name="other_receiver">
                                             </h3>
                                         </div>
                                         <div class="row" id="ship-box-info" style="display: none;">
                                             <div class="col-12 col-md-6">
                                                 <div class="checkout-form-list">
                                                     <label>Họ<span class="required">*</span></label>
-                                                    <input type="text" placeholder="">
+                                                    <input type="text" placeholder="" name="receiver_lastname">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="checkout-form-list">
                                                     <label>Tên<span class="required">*</span></label>
-                                                    <input type="text" placeholder="">
+                                                    <input type="text" placeholder="" name="receiver_firstname">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="checkout-form-list">
                                                     <label>Địa Chỉ <span class="required">*</span></label>
-                                                    <input type="text" placeholder="Số nhà - Phố">
+                                                    <input type="text" placeholder="Số nhà - Phố" name="receiver_home_number">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="checkout-form-list">
                                                     <label>Xã/ Phường <span class="required">*</span></label>
-                                                    <input type="text">
+                                                    <input type="text" name="receiver_ward">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="checkout-form-list">
                                                     <label>Quận/ Huyện <span class="required">*</span></label>
-                                                    <input type="text" placeholder="">
+                                                    <input type="text" placeholder="" name="receiver_district">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="checkout-form-list">
                                                     <label>Tỉnh/ Thành Phố <span class="required">*</span></label>
-                                                    <input type="text">
+                                                    <input type="text" name="receiver_city">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="checkout-form-list">
                                                     <label>Điện Thoại <span class="required">*</span></label>
-                                                    <input type="text">
+                                                    <input type="text" name="receiver_phone">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="checkout-form-list">
                                                     <label>Địa Chỉ Email <span class="required">*</span></label>
-                                                    <input type="email" placeholder="">
+                                                    <input type="email" placeholder="" name="receiver_email">
                                                 </div>
                                             </div>
                                         </div>

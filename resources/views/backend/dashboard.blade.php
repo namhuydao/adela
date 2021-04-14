@@ -1,6 +1,7 @@
 @extends('backend.layouts.master')
 @section('title'){{'Dashboard'}}@endsection
 @section('content')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <div id="layoutSidenav">
         @include('backend.layouts.sideNav')
         <div id="layoutSidenav_content">
@@ -14,55 +15,95 @@
                         <div class="col-md-4">
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body"><p style="font-size: 30px; text-align: center">
-                                        {{\App\User::count()}}<i style="padding-left: 10px" class="fas fa-user"></i>
+                                        {{\App\User::count()}} Nhân viên</i>
                                     </p>
-                                </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="{{route('user')}}">Xem thông tin chi
-                                        tiết</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body"><p style="font-size: 30px; text-align: center">
-                                        {{\App\Post::count()}}<i style="padding-left: 10px" class="fad fa-newspaper"></i>
+                                        {{\App\Post::count()}} Bài viết</i>
                                     </p></div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="{{route('post')}}">Xem thông tin chi
-                                        tiết</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card bg-success text-white mb-4">
                                 <div class="card-body"><p style="font-size: 30px; text-align: center">
-                                        {{\App\Product::count()}}<i style="padding-left: 10px" class="fad fa-shopping-bag"></i>
+                                        {{\App\Product::count()}} Sản phẩm</i>
                                     </p></div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="{{route('product')}}">Xem thông tin chi
-                                        tiết</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-dark text-white mb-4">
+                                <div class="card-body"><p style="font-size: 30px; text-align: center">
+                                        {{\App\Customer::count()}} Khách hàng</i>
+                                    </p></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body"><p style="font-size: 30px; text-align: center">
+                                        {{\App\Newsletter::count()}} Liên hệ</i>
+                                    </p></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-secondary text-white mb-4">
+                                <div class="card-body"><p style="font-size: 30px; text-align: center">
+                                        {{\App\Bill::count()}} Đơn hàng</i>
+                                    </p></div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="mb-5">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <script>
+
+                        const labels = [
+                            'January',
+                            'February',
+                            'March',
+                            'April',
+                            'May',
+                            'June',
+                        ];
+                        const data = {
+                            labels: labels,
+                            datasets: [{
+                                label: 'My First dataset',
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [0, 10, 5, 2, 20, 30, 45],
+                            }]
+                        };
+                        const config = {
+                            type: 'line',
+                            data,
+                            options: {}
+                        };
+                            // === include 'setup' then 'config' above ===
+
+                            var myChart = new Chart(
+                            document.getElementById('myChart'),
+                            config
+                            );
+                    </script>
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
-                            Bảng sản phẩm
+                            Top 3 sản phẩm bán chạy nhất
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered">
                                     <thead>
                                     <tr>
                                         <th>Avatar</th>
                                         <th>Tên</th>
                                         <th>Mô tả</th>
-                                        <th>Người bán</th>
                                         <th>Giá gốc</th>
                                         <th>Giá ưu đãi</th>
                                         <th>Danh mục</th>
@@ -82,7 +123,6 @@
                                                         alt="" width="100" height="100"></td>
                                                 <td>{{$product->name}}</td>
                                                 <td>{{$product->description}}</td>
-                                                <td>{{$product->user->firstname . ' ' . $product->user->lastname}}</td>
                                                 <td>{{$product->base_price}}</td>
                                                 <td>{{$product->discount_price}}</td>
                                                 <td>{{$product->category->name}}</td>

@@ -62,16 +62,16 @@ class ShopController extends Controller
         return view('site.shop.shop', compact('products', 'categories', 'category', 'sizes', 'brands', 'paginateProducts', 'tags'));
     }
 
-    public function show($slug, $id){
+    public function show($id){
         $sizes = Size::all();
         $products = Product::latest('id')->get();
         $product = Product::find($id);
         return view('site.shop.product-details', compact('product', 'products','sizes'));
     }
 
-    public function addCart(Request $request,$slug, $id){
+    public function addCart(Request $request, $id){
         $product = Product::find($id);
-        $price = $product->discount_price ? $product->discount_price : $product->base_price;
+        $price = $product->discount_price ? : $product->base_price;
         Cart::add($id, $product->name, $request->amount, $price, 0 , ['size' => $request->size]);
         return redirect()->route('shopDetails',$product->id);
     }

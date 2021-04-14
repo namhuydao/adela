@@ -33,7 +33,7 @@
                         <p>Cám ơn bạn đã mua sắm tại cửa hàng chúng tôi!</p>
                         <div class="buttons">
                             <div class="pull-right">
-                                <a href="{{route('shop')}}" class="btn btn-primary">Tiếp Tục Mua Sắm</a>
+                                <a href="{{URL::to('nam')}}" class="btn btn-primary">Tiếp Tục Mua Sắm</a>
                             </div>
                         </div>
                     </div>
