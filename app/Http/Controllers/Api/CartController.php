@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Bill;
 use App\BillItem;
-use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\ProductImages;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -30,7 +29,7 @@ class CartController extends Controller
         $order->quantity = 1;
 
         $product = Product::find($request->product_id);
-        $order->price = $product->base_rice;
+        $order->price = $product->base_price;
         $order->save();
 
         return response()->json([
@@ -66,7 +65,7 @@ class CartController extends Controller
 
             $product->name = $request->name;
             $product->description = $request->desc;
-            $product->seller_id = 2;
+            $product->seller_id = 2; //lấy use_id ở trong app
             $product->base_price = $request->base_price;
             $product->discount_price = $request->discount_price;
             $product->brand_id = $request->brand;
