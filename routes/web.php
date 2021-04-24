@@ -7,8 +7,9 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'guest'], function (){
     Route::get('register', 'Backend\Auth\RegisterController@create')->name('register');
     Route::post('register', 'Backend\Auth\RegisterController@store');
 
-    Route::get('resend', 'Backend\Auth\VerificationController@create')->name('resend');
-    Route::post('resend', 'Backend\Auth\VerificationController@resend');
+    Route::get('verify', 'Backend\Auth\VerificationController@create')->name('resend');
+    Route::post('verify', 'Backend\Auth\VerificationController@resend');
+    Route::get('verify_again', 'Backend\Auth\VerificationController@verify_again')->name('verify_again');
 
     Route::get('verifyEmail/{token}', 'Backend\Auth\VerificationController@verifyEmail')->name('verify');
 
@@ -163,6 +164,9 @@ Route::group(['prefix' => 'admin'], function (){
     //Forget Password
     Route::get('forgotPassword','Backend\Auth\Password\ForgotController@create')->name('forgot');
     Route::post('forgotPassword','Backend\Auth\Password\ForgotController@store');
+
+    Route::get('email_again','Backend\Auth\Password\ForgotController@email_again')->name('email_again');
+
     Route::post('resendPass','Backend\Auth\Password\ForgotController@resend')->name('passResend');
 
     Route::get('resetPassword','Backend\Auth\Password\ResetController@create')->name('reset');

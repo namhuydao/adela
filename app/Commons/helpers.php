@@ -80,3 +80,11 @@ function saveFile($file, $path)
     $file->move(base_path() . '/public/backend/images/' . $path, $file_name_insert);
     return $path . '/' . $file_name_insert;
 }
+
+function saveLog($user_id, $message){
+    $log = new \App\Log();
+    $log->user_id = $user_id;
+    $log->message = $message;
+    $log->save();
+    return true;
+}

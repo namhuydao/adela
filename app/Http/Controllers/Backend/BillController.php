@@ -59,6 +59,7 @@ class BillController extends Controller
         $bill->payment_type = $request->payment_type;
         $bill->save();
 
+        saveLog(auth()->user()->id, 'Sửa 1 bill');
         return back()->with('success','Bạn đã sửa thành công');
     }
 
@@ -74,6 +75,7 @@ class BillController extends Controller
     public function destroy($id){
         Bill::destroy($id);
         BillItem::where('bill_id', $id)->delete();
+        saveLog(auth()->user()->id, 'Xóa 1 bill');
         return back();
     }
 }

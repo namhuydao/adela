@@ -21,7 +21,12 @@ class VerificationController extends Controller
     {
         Mail::to(session('email_resend'))->send(new verifyEmail(User::where('email', session('email_resend'))->first()));
         session()->put('resent', true);
-        return redirect()->back();
+        return redirect()->route('verify_again');
+    }
+
+    public function verify_again()
+    {
+        return view('backend.auth.verify_again');
     }
 
     public function verifyEmail($token)

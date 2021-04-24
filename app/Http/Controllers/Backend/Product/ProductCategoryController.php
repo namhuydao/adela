@@ -37,13 +37,8 @@ class ProductCategoryController extends Controller
         $productCategory->parent_id = $request->categories;
         $productCategory->slug = Str::slug($productCategory->name, '-');
         $productCategory->save();
-
+        saveLog(auth()->user()->id, 'Tạo 1 danh mục sản phẩm mới');
         return redirect()->route('productCategory');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)
@@ -65,13 +60,14 @@ class ProductCategoryController extends Controller
         $productCategory->name = $request->name;
         $productCategory->slug = Str::slug($productCategory->name, '-');
         $productCategory->save();
-
+        saveLog(auth()->user()->id, 'Sửa 1 danh mục sản phẩm');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         ProductCategory::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 danh mục sản phẩm');
         return redirect()->route('productCategory');
     }
 }

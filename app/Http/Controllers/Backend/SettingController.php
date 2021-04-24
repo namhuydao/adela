@@ -34,7 +34,7 @@ class SettingController extends Controller
         $setting->config_key = $request->key;
         $setting->config_value = $request->value;
         $setting->save();
-
+        saveLog(auth()->user()->id, 'Tạo 1 cài đặt mới');
         return redirect()->route('setting');
     }
 
@@ -59,13 +59,14 @@ class SettingController extends Controller
         $setting->config_key = $request->key;
         $setting->config_value = $request->value;
         $setting->save();
-
+        saveLog(auth()->user()->id, 'Sửa 1 cài đặt');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         Setting::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 cài đặt');
         return redirect()->route('setting');
     }
 }

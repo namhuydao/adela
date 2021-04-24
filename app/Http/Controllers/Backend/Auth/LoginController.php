@@ -39,6 +39,7 @@ class LoginController extends Controller
             return redirect()->back()->with('message', 'Đăng nhập thất bại');
         }
     }
+
     public function destroy()
     {
         auth()->logout();

@@ -37,7 +37,7 @@ class MenuController extends Controller
         $menu->parent_id = $request->categories;
         $menu->slug = Str::slug($menu->name, '-');
         $menu->save();
-
+        saveLog(auth()->user()->id, 'Tạo 1 menu mới');
         return redirect()->route('menu');
     }
 
@@ -61,13 +61,14 @@ class MenuController extends Controller
         $menu->order_number = $request->number;
         $menu->slug = Str::slug($menu->name, '-');
         $menu->save();
-
+        saveLog(auth()->user()->id, 'Sửa 1 menu');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         Menu::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 menu');
         return redirect()->route('menu');
     }
 }

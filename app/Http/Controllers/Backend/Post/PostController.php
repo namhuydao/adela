@@ -51,13 +51,8 @@ class PostController extends Controller
             $post->save();
         }
         $post->tags()->sync($request->tags);
-
+        saveLog(auth()->user()->id, 'Tạo 1 tin tức mới');
         return redirect()->route('post');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)
@@ -96,7 +91,7 @@ class PostController extends Controller
         }
 
         $post->tags()->sync($request->tags);
-
+        saveLog(auth()->user()->id, 'Sửa 1 tin tức');
         return back()->with('success', 'Sửa thành công');
     }
 
@@ -104,7 +99,7 @@ class PostController extends Controller
     {
         Post::find($id)->tags()->detach();
         Post::destroy($id);
-
+        saveLog(auth()->user()->id, 'Xóa 1 tin tức');
         return redirect()->route('post');
     }
 }

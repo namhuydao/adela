@@ -37,6 +37,7 @@ class UserprofileController extends Controller
             $user->image = $image_src;
             $user->save();
         }
+        saveLog(auth()->user()->id, 'Sửa thông tin cá nhân');
         return redirect()->back()->with('success', 'Thay đổi thành công');
     }
 
@@ -67,7 +68,7 @@ class UserprofileController extends Controller
         $user = User::find($id);
         $user->password = Hash::make($request->password);
         $user->save();
-
+        saveLog(auth()->user()->id, 'Thay đổi mật khẩu');
         return redirect()->back()->with("success","Đổi mật khẩu thành công");
     }
 }

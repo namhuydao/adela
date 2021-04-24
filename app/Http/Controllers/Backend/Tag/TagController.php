@@ -33,7 +33,7 @@ class TagController extends Controller
         $tag = new Tag();
         $tag->name = $request->name;
         $tag->save();
-
+        saveLog(auth()->user()->id, 'Tạo 1 tag mới');
         return redirect()->route('tag');
     }
 
@@ -55,13 +55,14 @@ class TagController extends Controller
         $tag = Tag::find($id);
         $tag->name = $request->name;
         $tag->save();
-
+        saveLog(auth()->user()->id, 'Sửa 1 tag');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         Tag::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 tag');
         return redirect()->route('tag');
     }
 }

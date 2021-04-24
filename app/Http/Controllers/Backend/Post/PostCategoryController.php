@@ -35,7 +35,7 @@ class PostCategoryController extends Controller
         $postCategory->name = $request->name;
         $postCategory->parent_id = $request->categories;
         $postCategory->save();
-
+        saveLog(auth()->user()->id, 'Tạo 1 danh mục tin tức mới');
         return redirect()->route('postCategory');
     }
 
@@ -62,13 +62,14 @@ class PostCategoryController extends Controller
         $postCategory = PostCategory::find($id);
         $postCategory->name = $request->name;
         $postCategory->save();
-
+        saveLog(auth()->user()->id, 'Sửa 1 danh mục tin tức');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         PostCategory::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 danh mục tin tức');
         return redirect()->route('postCategory');
     }
 }

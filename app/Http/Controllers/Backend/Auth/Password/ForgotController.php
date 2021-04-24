@@ -32,12 +32,17 @@ class ForgotController extends Controller
 
         Mail::to($request->email)->send(new resetPassword(User::where('email', $request->email)->first()));
         session()->put('email_resend', $request->email);
-        return back()->with('message', 'Chúng tôi đã gửi link đặt lại mật khẩu cho bạn!');
+        return redirect()->route('email_again');
+    }
+
+    public function email_again()
+    {
+        return view('backend.auth.passwords.email_again');
     }
 
     public function resend()
     {
         Mail::to(session('email_resend'))->send(new resetPassword(User::where('email', session('email_resend'))->first()));
-        return redirect()->back()->with('message', 'Chúng tôi đã gửi link đặt lại mật khẩu cho bạn!');;
+        return redirect()->route('email_again');
     }
 }

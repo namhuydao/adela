@@ -31,13 +31,8 @@ class BrandController extends Controller
         $brands = new Brand();
         $brands->name = $request->name;
         $brands->save();
-
+        saveLog(auth()->user()->id, 'Tạo 1 thương hiệu sản phẩm mới');
         return redirect()->route('brand');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)
@@ -58,13 +53,14 @@ class BrandController extends Controller
         $brand = Brand::find($id);
         $brand->name = $request->name;
         $brand->save();
-
+        saveLog(auth()->user()->id, 'Sửa 1 thương hiệu sản phẩm');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         Brand::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 thương hiệu sản phẩm');
         return redirect()->route('brand');
     }
 }

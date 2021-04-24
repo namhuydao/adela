@@ -101,7 +101,7 @@
 
 <body>
 <div class="invoice-box">
-    <table cellpadding="0" cellspacing="0">
+    <table>
         <tr class="top">
             <td colspan="5">
                 <table>

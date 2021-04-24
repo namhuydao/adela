@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>SuperFood| Login</title>
+    <title>Adela| Login</title>
     <link href="{{ asset('backend/css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/core.css') }}" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <a class="small" href="register">Quên mật khẩu?</a>
+                                        <a class="small" href="{{route('forgot')}}">Quên mật khẩu?</a>
                                         <button name="login" class="btn btn-primary">Đăng nhập</button>
                                     </div>
                                 </form>

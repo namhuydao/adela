@@ -48,6 +48,7 @@ class BannerController extends Controller
             $banner->image = $image_src;
             $banner->save();
         }
+        saveLog(auth()->user()->id, 'Tạo 1 banner mới');
         return redirect()->route('banner');
     }
 
@@ -87,13 +88,14 @@ class BannerController extends Controller
             $banner->image = $image_src;
             $banner->save();
         }
-
+        saveLog(auth()->user()->id, 'Sửa 1 banner');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         Banner::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 banner');
         return redirect()->route('banner');
     }
 }

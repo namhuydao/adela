@@ -32,13 +32,8 @@ class SizeController extends Controller
         $size = new Size();
         $size->name = $request->name;
         $size->save();
-
+        saveLog(auth()->user()->id, 'Tạo 1 size sản phẩm mới');
         return redirect()->route('size');
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)
@@ -59,13 +54,14 @@ class SizeController extends Controller
         $size = Size::find($id);
         $size->name = $request->name;
         $size->save();
-
+        saveLog(auth()->user()->id, 'Sửa 1 size sản phẩm');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         Size::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 size sản phẩm');
         return redirect()->route('size');
     }
 }

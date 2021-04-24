@@ -91,6 +91,7 @@
                             config
                         );
                     </script>
+
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
@@ -130,6 +131,40 @@
                                                     {{$tag->name}},
                                                 @endforeach
                                             </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table mr-1"></i>
+                            Bảng admin log
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Người thực hiện</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($logs as $log)
+                                        <tr>
+                                            <td>
+                                                @foreach(\App\User::all() as $user)
+                                                    @if($user->id === $log->user_id)
+                                                        {{$user->lastname . ' ' . $user->firstname}}
+                                                    @endif
+                                                @endforeach
+                                            </td>
+                                            <td>{{$log->message}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

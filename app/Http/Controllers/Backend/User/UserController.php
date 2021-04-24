@@ -61,7 +61,7 @@ class UserController extends Controller
         $verified_user->save();
 
         $user->roles()->sync($request->role_id);
-
+        saveLog(auth()->user()->id, 'Tạo 1 người dùng mới');
         return redirect()->route('user');
     }
 
@@ -89,22 +89,33 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
-        $user->password = $request->password ? Hash::make($request->password) : $user->password;
+
         $user->save();
 
+        if ($request->password){
+            $request->validate([
+                'password' => 'min:8|max:255|confirmed',
+            ], [
+                'password.confirmed' => 'Mật khẩu không giống nhau',
+            ]);
+
+            $user->password = bcrypt($request->password);
+            $user->save();
+        }
         if ($request->hasFile('fileToUpload')){
             $image_src = saveFile($request->file('fileToUpload'), 'user/' . date('Y/m/d'));
             $user->image = $image_src;
             $user->save();
         }
         $user->roles()->sync($request->role_id);
-
+        saveLog(auth()->user()->id, 'Sửa 1 người dùng');
         return redirect()->route('user');
     }
 
     public function destroy($id)
     {
         User::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 người dùng');
         return redirect()->route('user');
     }
 }

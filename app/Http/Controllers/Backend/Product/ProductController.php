@@ -74,7 +74,7 @@ class ProductController extends Controller
 
         $product->tags()->sync($request->tags);
         $product->sizes()->sync($request->sizes);
-
+        saveLog(auth()->user()->id, 'Tạo 1 sản phẩm mới');
         return redirect()->route('product');
     }
 
@@ -136,6 +136,7 @@ class ProductController extends Controller
 
         $product->tags()->sync($request->tags);
         $product->sizes()->sync($request->sizes);
+        saveLog(auth()->user()->id, 'Sửa 1 danh mục sản phẩm');
         return back()->with('success', 'Sửa thành công');
     }
 
@@ -143,6 +144,7 @@ class ProductController extends Controller
     {
         Product::find($id)->tags()->detach();
         Product::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 danh mục sản phẩm');
         return redirect()->route('product');
     }
 }

@@ -33,7 +33,7 @@ class PermissionController extends Controller
         $permission->name = $request->name;
         $permission->parent_id = $request->permission_parent;
         $permission->save();
-
+        saveLog(auth()->user()->id, 'Tạo 1 quyền mới');
         return redirect()->route('permission');
     }
 
@@ -56,13 +56,14 @@ class PermissionController extends Controller
         $permission->code = $request->code;
         $permission->name = $request->name;
         $permission->save();
-
+        saveLog(auth()->user()->id, 'Sửa 1 quyền');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         Permission::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 quyền');
         return  redirect()->route('permission');
     }
 }

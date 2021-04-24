@@ -40,6 +40,7 @@ class RoleController extends Controller
         $role->save();
 
         $role->permissions()->sync($request->pers);
+        saveLog(auth()->user()->id, 'Tạo 1 vai trò mới');
         return redirect()->route('role');
     }
 
@@ -66,13 +67,14 @@ class RoleController extends Controller
         $role->save();
 
         $role->permissions()->sync($request->pers);
-
+        saveLog(auth()->user()->id, 'Sửa 1 vai trò');
         return back()->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
         Role::destroy($id);
+        saveLog(auth()->user()->id, 'Xóa 1 vai trò');
         return redirect()->route('role');
     }
 }

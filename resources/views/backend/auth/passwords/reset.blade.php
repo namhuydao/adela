@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>superFood_MVC| Reset Password</title>
+    <title>Adela| Reset Password</title>
     <link href="{{ asset('backend/css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/core.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -67,7 +67,8 @@
                                 </form>
                             </div>
                             <div class="card-footer text-center">
-                                <div class="small"><a href="{{route('register')}}">Chưa có tài khoản? Đăng kí ngay!</a></div>
+                                <div class="small"><a href="{{route('register')}}">Chưa có tài khoản? Đăng kí ngay!</a>
+                                </div>
                             </div>
                         </div>
                     </div>
