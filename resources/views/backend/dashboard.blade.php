@@ -109,6 +109,7 @@
                                         <th>Giá ưu đãi</th>
                                         <th>Danh mục</th>
                                         <th>Tags</th>
+                                        <th>Số lượng đã bán</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -131,6 +132,7 @@
                                                     {{$tag->name}},
                                                 @endforeach
                                             </td>
+                                            <td>{{$product->unit_sold}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

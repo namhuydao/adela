@@ -28,7 +28,13 @@ class DashboardController extends Controller
         }
         $tempStr = implode(',', $product_arr);
         $products = Product::whereIn('id', $product_arr)->orderByRaw(DB::raw("FIELD(id, $tempStr)"))->limit(3)->get();
-
+        foreach ($item_arr as $key => $value){
+            foreach ($products as $product){
+                if ($product->id == $key){
+                    $product->unit_sold = $value;
+                }
+            }
+        }
         // Lấy dữ liệu bảng Log
         $logs = Log::latest('id')->get();
         return view('backend/dashboard', compact('products', 'logs'));
